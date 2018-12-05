@@ -1,0 +1,68 @@
+@import "var.scss";
+
+.page-forget {
+  .mui-input-group {
+    background-color: #f5f5f5;
+  }
+  .mui-input-group:before, .mui-input-group:after {
+    height: 0;
+  }
+  .form-box {
+    background-color: #fff;
+    padding-left: px2rem(40px);
+    border-bottom: px2rem(2px) solid #e8e8e8;
+  }
+  .mui-input-group .mui-input-row {
+    height: px2rem(100px);
+    line-height: px2rem(98px);
+    border-bottom: px2rem(2px) solid #e8e8e8;
+    input {
+      padding: 0;
+      height: px2rem(98px);
+      width: 70%;
+      font-size: px2rem(28px);
+      border: none;
+    }
+    label {
+      height: 100%;
+      line-height: px2rem(100px);
+      padding: 0;
+      color: #172434;
+      font-size: px2rem(28px);
+      width: 30%;
+    }
+  }
+  .mui-input-group .mui-input-row {
+    &:last-child {
+      border-bottom: none;
+    }
+    &:before, &:after {
+      height: 0;
+    }
+  }
+  .mui-button-row {
+    margin: px2rem(64px) 0;
+    height: 100%;
+    padding: 0 px2rem(65px);
+  }
+  .code-box {
+    position: relative;
+  }
+  .code-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: px2rem(200px);
+    height: px2rem(98px);
+    border: none;
+    border-left: px2rem(2px) solid #e8e8e8;
+    border-radius: 0;
+    color: $primary;
+    padding: 0;
+    font-size: px2rem(25px);
+    &:hover {
+      background: #fff;
+      color: #666;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>引导页</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../../css/global/global.css?v=$VERSION" />
+    <link rel="stylesheet" href="../../css/guide/style.css?v=$VERSION" />
+	</head>
+	<body>
+    <div id="page-container" class="page-container page-guide" v-cloak>
+			<widget-banner :config="config" :data="data" v-if="indicate">
+        <div v-for="(item, index) in data" :key="index" :slot="'banner_' + index">
+					<div class="guide-skip" @click="goLogin" v-if="index < 2">跳过<span class="iconfont icon-arrow_right"></span></div>
+					<div class="img-box" :class="'img-' + item.name"></div>
+					<h3 class="guide-title">{{item.title}}</h3>
+					<div class="mui-button-row" v-if="index === 2">
+            <button type="button" class="mui-btn mui-btn-primary mui-btn-full" @click="goLogin">立即登录</button>
+          </div>
+				</div>
+      </widget-banner>
+    </div>
+		<script src="../../../lib/require/require.min.js"></script>
+		<script src="../../js/global/main.js?v=$VERSION"></script>
+		<script src="../../js/guide/index.js?v=$VERSION"></script>
+	</body>
+</html>

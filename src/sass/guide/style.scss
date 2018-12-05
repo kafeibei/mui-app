@@ -1,0 +1,48 @@
+@import "../global/var.scss";
+
+.page-guide {
+  background-color: #fff;
+  text-align: center;
+  height: 100vh;
+  .mui-slider .mui-slider-group  .mui-slider-item {
+    height: 100vh;
+  }
+  .mui-slider-indicator {
+    bottom: px2rem(80px);
+  }
+  .guide-skip {
+    position: absolute;
+    right: px2rem(50px);
+    top: px2rem(60px);
+    font-size: px2rem(26px);
+    color: #8395A7;
+    .iconfont {
+      font-size: px2rem(24px);
+      margin-left: px2rem(6px);
+    }
+  }
+  .img-box {
+    display: inline-block;
+    margin-top: px2rem(240px);
+    width: px2rem(288px);
+    height: px2rem(288px);
+    &.img-1 {
+      @include img-retina3('../../assets/guide/1-1.png', '../../assets/guide/1-1.png', '../../assets/guide/1-1.png', px2rem(288px), px2rem(288px));
+    }
+    &.img-2 {
+      @include img-retina3('../../assets/guide/1-2.png', '../../assets/guide/1-2.png', '../../assets/guide/1-2.png', px2rem(288px), px2rem(288px));
+    }
+    &.img-3 {
+      @include img-retina3('../../assets/guide/1-3.png', '../../assets/guide/1-3.png', '../../assets/guide/1-3.png', px2rem(288px), px2rem(288px));
+    }
+  }
+  .guide-title {
+    font-size: px2rem(48px);
+    color: $textTitle;
+    font-weight: normal;
+    margin: px2rem(120px) 0 px2rem(40px);
+  }
+  .mui-button-row {
+    margin: px2rem(106px) px2rem(65px) 0;
+  }
+}

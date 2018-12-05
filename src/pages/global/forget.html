@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>忘记密码</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../../css/global/global.css?v=$VERSION" />
+    <link rel="stylesheet" href="../../css/global/forget.css?v=$VERSION" />
+	</head>
+	<body>
+    <div id="page-container" class="page-container page-navbar page-forget" v-cloak>
+      <nav-bar :title="title" :config="navBarConfig"></nav-bar>
+      <div class="forget-box">
+        <form class="mui-input-group">
+          <div class="form-box">
+            <div class="mui-input-row clear">
+              <label>手机号码</label>
+              <input type="tel" v-model="form.mobile" placeholder="请输入手机号">
+            </div>
+            <div class="mui-input-row code-box" prop="vcode">
+              <label>验证码</label>
+              <input type="number" v-model="form.vcode" placeholder="请输入验证码">
+              <button type="button" class="code-btn" @click="getCode" :class="{'btn-disabled': existVcode}">{{codeText}}</button>
+            </div>
+            <div class="mui-input-row" prop="password">
+              <label>登录密码</label>
+              <input type="password" v-model="password" placeholder="新的登录密码">
+            </div>
+            <div class="mui-input-row" prop="confirmPassword">
+              <label>再次输入</label>
+              <input type="password" v-model="confirmPassword" placeholder="确认新的密码">
+            </div>
+          </div>
+          <div class="mui-button-row next-btn">
+            <button type="button" class="mui-btn mui-btn-primary mui-btn-full"  data-loading-icon="mui-spinner mui-spinner-white" data-loading-text="提交中" @click="next($event)">确  定</button>
+          </div>
+        </form>
+      </div>
+    </div>
+		<script src="../../../lib/require/require.min.js?v=$VERSION"></script>
+		<script src="../../js/global/main.js?v=$VERSION"></script>
+		<script src="../../js/global/forget.js?v=$VERSION"></script>
+	</body>
+</html>

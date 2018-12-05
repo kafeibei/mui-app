@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../../css/global/global.css?v=$VERSION" />
+    <link rel="stylesheet" href="../../css/global/login.css?v=$VERSION" />
+	</head>
+	<body>
+    <div id="page-container" class="page-container page-login" v-cloak>
+      <div class="login-box mui-content">
+        <form class="mui-input-group">
+          <div class="form-box">
+            <div class="mui-input-row" prop="loginName">
+              <input type="text" name="loginName" v-model="form.loginName" class="mui-input-clear mui-input"
+							@change="changeInput('loginName', form.loginName)" @focus="changeInput('loginName', form.loginName)" @keyup="changeInput('loginName', form.loginName)"
+							@blur="formConfig.loginNameHide = true"
+							placeholder="用户名" />
+							<span class="mui-icon mui-icon-clear" :class="{
+								'mui-hidden': formConfig.loginNameHide
+							}" @tap="form.loginName = ''"></span>
+            </div>
+            <div class="mui-input-row password" prop="password">
+              <input :type="formConfig.type" name="password" class="mui-input-clear mui-input mui-input-password" @change="changeInput('password', password)" @focus="changeInput('password', password)" @keyup="changeInput('password', password)" v-model="password"
+							@blur="formConfig.passwordHide = true" placeholder="密码" />
+							<span class="mui-icon mui-icon-eye" @tap="formConfig.type === 'password' ? (formConfig.type = 'text') : (formConfig.type = 'password')" :class="{'mui-active' : formConfig.type === 'text'}"></span>
+							<span class="mui-icon mui-icon-clear" :class="{
+								'mui-hidden': formConfig.passwordHide
+							}" @tap="password = ''"></span>
+            </div>
+          </div>
+          <div class="other-btn hg-flex">
+            <div class="checkbox-area flex-one">
+              <div class="mui-input-row mui-checkbox">
+                <input name="selectionChecked" type="checkbox" v-model="selectionChecked" @change="triggerchecked"  class="checkbox-highlight">
+              </div>
+              <label>记住账户</label>
+            </div>
+            <a class="password-btn" @tap="goPage('forget')">忘记密码</a>
+          </div>
+          <div class="mui-button-row">
+            <button type="button" class="mui-btn mui-btn-primary mui-btn-full" data-loading-icon="mui-spinner mui-spinner-white" data-loading-text="登录中" @click="onSubmit($event)">登  录</button>
+          </div>
+        </form>
+      </div>
+    </div>
+		<script src="../../../lib/require/require.min.js"></script>
+		<script src="../../js/global/main.js?v=$VERSION"></script>
+		<script src="../../js/global/login.js?v=$VERSION"></script>
+	</body>
+</html>

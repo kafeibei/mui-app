@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>地图定位</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../../css/global/global.css?v=$VERSION" />
+    <link rel="stylesheet" href="../../css/global/location.css?v=$VERSION" />
+	</head>
+	<body>
+    <div id="page-container" class="page-container page-navbar page-location" v-cloak>
+      <nav-bar :title="title" :config="navBarConfig"></nav-bar>
+			<div class="location-search">
+        <div class="mui-input-row input-search">
+          <input type="search" class="mui-input-clear" v-model="address" placeholder="请输入搜索范围内的地址名称" @keyup.enter="addressSearch">
+      	</div>
+				<div @click="addressSearch">地址搜索</div>
+			</div>
+      <div class="map-area" id="map"></div>
+			<div class="location-list">
+        <div class="location-item hg-flex" v-for="(item, index) in listItems" :key="index">
+  				<div class="location-title flex-one">{{item.title}}</div>
+          <div class="mui-input-row mui-radio mui-big-size">
+            <input name="id" :value="item.id" type="radio" v-model="curItem.id"/>
+          </div>
+        </div>
+			</div>
+      <div class="relocation-btn" @click="currentPosition">找不到我的位置，重新定位</div>
+    </div>
+		<script src="../../../lib/require/require.min.js"></script>
+		<script src="../../js/global/main.js?v=$VERSION"></script>
+		<script src="../../js/global/location.js?v=$VERSION"></script>
+	</body>
+</html>

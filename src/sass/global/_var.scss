@@ -1,0 +1,124 @@
+/*
+* 变量配置
+* 方法定义
+*/
+$textTitle: #353B48;
+$textContent: #666;
+$textConfig: #999;
+
+$primary: #ff637c;
+
+$borderCellColor: #d9d9d9;
+$backgroundCellColor: #d9d9d9;
+$pageActiveBgColor: #f5f5f5;
+$tipsColor: #b8b8b8;
+$borderColor: #d9d9d9;
+/*flex*/
+$table-columns : (0 : 0, 5 : 5%, 10 : 10%, 15 : 15%, 20 : 20%, 25 : 25%, 30 : 30%, 35 : 35%,40 : 40%, 50 : 50%)!default;
+
+// Base
+// - Responsive image
+// - Retina image
+// - px2rem size
+
+// Responsive image
+@mixin img-responsive($display: block) {
+  display: $display;
+  max-width: 100%;
+  height: auto;
+}
+
+// Retina image
+@mixin img-retina($file1, $file2, $width, $height) {
+  background-image: url("#{$file1}");
+  background-image: -webkit-image-set(url("#{$file1}") 1x, url("#{$file2}") 1x);
+  background-image: image-set(url("#{$file1}") 1x, url("#{$file2}") 2x);
+  background-size: $width $height;
+}
+
+// Retina image
+@mixin img-retina3($file1, $file2, $file3, $width, $height) {
+  background:no-repeat center transparent;
+  background-image: url("#{$file1}");
+  background-image: -webkit-image-set(url("#{$file1}") 1x, url("#{$file2}") 2x, url("#{$file3}") 3x);
+  background-image: image-set(url("#{$file1}") 1x, url("#{$file2}") 2x, url("#{$file3}") 3x);
+  background-size: $width $height;
+}
+
+@mixin layout($flex) {
+  display: $flex;
+}
+
+@mixin layout-flex($num) {
+  flex: $num;
+}
+
+@mixin line-overflow($line) {
+  display:-webkit-box; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:$line; -webkit-box-orient:vertical;
+}
+
+@mixin layout-direction($direction) {
+  flex-direction: $direction;
+}
+
+@mixin layout-align($align) {
+  justify-content: $align;
+}
+
+@mixin layout-items($items) {
+  align-items: $items;
+}
+
+@mixin layout-wrap($wrap) {
+  flex-wrap: $wrap;
+}
+@mixin layout-column($column) {
+  flex: 0 0 $column;
+}
+@mixin layout-order($num) {
+  order : $num;
+}
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// px to rem
+@function px2rem($pxvalues, $baselinepx:16px) {
+  // @return $pxvalues;
+  $baselinerem: $baselinepx / 1rem * 4.6875;
+  @return $pxvalues / $baselinerem;
+}
+
+@mixin font-dpr($font-size) {
+  font-size: $font-size;
+  [data-dpr="2"] & {
+    font-size: $font-size * 2;
+  }
+  [data-dpr="3"] & {
+    font-size: $font-size * 3;
+  }
+}
+
+@mixin gradient-horizontal($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+  background-image: -webkit-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Safari 5.1-6, Chrome 10+
+  background-image: -o-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Opera 12
+  background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=1); // IE9 and down
+}
+
+@mixin gradient-vertical($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+  background-image: -webkit-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Safari 5.1-6, Chrome 10+
+  background-image: -o-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Opera 12
+  background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=0); // IE9 and down
+}
