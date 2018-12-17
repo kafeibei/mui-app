@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>弹出菜单</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../../css/global/global.css?v=$VERSION" />
+	</head>
+	<body>
+    <div id="page-container" class="page-container page-navbar basic-popover" v-cloak>
+			<nav-bar :title="title" :config="navBarConfig"></nav-bar>
+			<div class="popover-section">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell hg-flex" @click="pickerTime('datetime', {})">
+						<span class="label">选择菜单</span>
+						<a class="mui-navigate-right flex-one active" :href="'#' + pickerPopover.id">{{pickerInfo.title}}</a>
+          </li>
+        </ul>
+			</div>
+			<div :id="pickerPopover.id" class="mui-popover">
+        <picker-popover :options="pickerPopover" @finish="finishPicker"></picker-popover>
+      </div>
+    </div>
+		<script src="../../../lib/require/require.min.js"></script>
+		<script src="../../js/global/main.js?v=$VERSION"></script>
+		<script src="../../js/basic/popover.js?v=$VERSION"></script>
+	</body>
+</html>

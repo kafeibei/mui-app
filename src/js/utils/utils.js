@@ -62,33 +62,6 @@ define(['config/config', 'config/setting'], (getConfig, getSetting) => {
   }
 
   /*
-* content 需要处理的内容
-* type true为替换，false为过滤
-*/
-  utils.filterHost = (content, type) => {
-    if (content) {
-      return content
-        .replace(/<img.*?src="(http:\/\/.*?)saas\/.*?".*?\/>/g, (string, key) => {
-          return string.replace(key, type ? globalConfig.getConfig('imgHost') : '')
-        })
-        .replace(/<img.*?src="(.*?)".*?\/>/g, (string, key) => {
-          if (type) {
-            return string.replace(key, utils.createImgsrc(key))
-          } else {
-            return string
-          }
-        })
-        .replace(/\?x-oss-process=image\/resize(.*?)/g, (string, key) => {
-          if (string === '?x-oss-process=image/resize') {
-            return string + ',m_fill,w_640'
-          }
-          return string
-        })
-    }
-    return ''
-  }
-
-  /*
   * 伪空
   */
   utils.fakeEmpty = (data) => {

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>操作表</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../../css/global/global.css?v=$VERSION" />
+	</head>
+	<body>
+    <div id="page-container" class="page-container page-navbar basic-actionsheet" v-cloak>
+			<nav-bar :title="title" :config="navBarConfig"></nav-bar>
+			<div class="actionsheet-section">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell hg-flex" @click="actionSheet">
+						<span class="label">选择功能类型</span>
+						<div class="mui-navigate-right flex-one active">{{sheetInfo.title}}</div>
+          </li>
+        </ul>
+			</div>
+      <div :id="sheetPopover.id" class="mui-popover mui-popover-action mui-popover-bottom" v-if="this.sheetPopover.active">
+        <action-sheet :options="sheetPopover" @finish="finishSheet" :data="sheetInfo"></action-sheet>
+      </div>
+    </div>
+		<script src="../../../lib/require/require.min.js"></script>
+		<script src="../../js/global/main.js?v=$VERSION"></script>
+		<script src="../../js/basic/actionsheet.js?v=$VERSION"></script>
+	</body>
+</html>

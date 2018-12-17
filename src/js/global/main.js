@@ -23,7 +23,6 @@ require.config({
   shim: {
     mui: ['css!../../lib/mui/mui.min.css'],
     fulcalendar: ['css!../css/global/fullcalendar.css'],
-    // webviewGroup: ['mui'],
     muiPicker: ['mui', 'css!../../lib/mui/mui.picker.min.css'],
     muiPoppicker: ['mui', 'css!../../lib/mui/mui.poppicker.css'],
     zoom: ['mui'],

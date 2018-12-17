@@ -1,4 +1,5 @@
 @import "var.scss";
+@import "../components/index.scss";
 
 .mui-input-group .mui-input-row {
   height: auto!important;
@@ -307,27 +308,30 @@
 
 // 底部面板
 .mui-popover {
-  &.mui-popover-action {
-    background-color: #f4f6f9;
+  .mui-popover-content {
+    background-color: #fff;
   }
-  .popover-header {
-    padding: 0 px2rem(20px);
-    border-bottom: px2rem(1px) solid #ccc;
-    line-height: px2rem(44px);
-    font-size: px2rem(16px);
+  .mui-table-title {
+    height: px2rem(98px);
+    font-size: px2rem(34px);
+    background: #F9FAFC;
+    box-shadow: 0 px2rem(2px) 0 0 #DDDDDD;
+    h3 {
+      font-size: px2rem(34px);
+      font-weight: normal;
+      text-align: center;
+    }
     .btntext {
-      float: right;
-      margin-left: px2rem(10px);
+      margin: 0 px2rem(16px);
     }
   }
-  &.mui-popover-action {
+  &.mui-popover-action.mui-popover-bottom {
     .mui-table-view {
       text-align: center;
       background-color: #fff;
       color: #000;
-      margin: px2rem(16px) 0 0 0;
-      border-top: px2rem(2px) solid #ddd;
-      font-size: px2rem(36px);
+      margin: 0;
+      font-size: px2rem(30px);
       border-radius: 0;
       &:first-child {
         margin-top: 0;
@@ -338,13 +342,23 @@
           content: none;
         }
       }
-    }
-    .mui-table-view-cell {
-      min-height: px2rem(100px);
-      line-height: px2rem(100px);
-      padding: 0 px2rem(10px);
-      &:last-child {
-        border-radius: 0;
+      .mui-table-view-cell {
+        min-height: px2rem(98px);
+        line-height: px2rem(98px);
+        padding: 0 px2rem(10px);
+        color: #999;
+        cursor: pointer;
+        &:after {
+          background-color: #e1e1e1;
+          left: px2rem(108px);
+          right: px2rem(108px);
+        }
+        &:last-child {
+          border-radius: 0;
+        }
+        &.mui-active {
+          color: #000;
+        }
       }
     }
   }

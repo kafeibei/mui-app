@@ -12,14 +12,16 @@
 	<body>
     <div id="page-container" class="page-container page-navbar page-bottombar page-home" v-cloak>
 			<nav-bar :title="title" :config="navBarConfig"></nav-bar>
-			<div class="home-section">
+			<div class="home-index">
+
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell" v-for="(item, index) in functions" :key="item.name + '_' + index" :class="'cell_' + item.name">
 						<div class="function-divider" v-if="item.name === 'divider'">{{item.title}}</div>
 						<div class="function-page hg-flex" @click="goPage(item.name)" v-else>
-							<span class="label">{{item.name}}-{{item.title}}</span>
+							<span class="label">{{item.title}}</span>
 	            <div class="mui-navigate-right flex-one"></div>
 						</div>
+
           </li>
         </ul>
 			</div>

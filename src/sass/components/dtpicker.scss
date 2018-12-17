@@ -1,0 +1,10 @@
+@import "../global/var.scss";
+
+.mui-dtpicker {
+  .mui-dtpicker-header button {
+    font-size: px2rem(24px);
+    padding: px2rem(10px) px2rem(20px);
+    line-height: 1.42;
+    vertical-align: middle;
+  }
+}

@@ -5,20 +5,24 @@ define(() => {
       name: 'divider'
     },
     {
-      title: '下拉选择',
-      name: 'select'
+      title: '下拉选择框',
+      name: 'select',
+      type: 'basic'
     },
     {
-      title: '时间选择器',
-      name: 'dtpicker'
+      title: '日期时间选择器',
+      name: 'datepicker',
+      type: 'basic'
     },
     {
-      title: '日期选择',
-      name: 'select'
+      title: '操作表',
+      name: 'actionsheet',
+      type: 'basic'
     },
     {
-      title: '面板功能',
-      name: 'popover'
+      title: '弹出菜单',
+      name: 'popover',
+      type: 'basic'
     },
     {
       title: '常用功能',
@@ -26,31 +30,38 @@ define(() => {
     },
     {
       title: '日历选择',
-      name: 'calendar'
+      name: 'calendar',
+      type: 'advanced'
     },
     {
       title: '地址选择',
-      name: 'select'
+      name: 'address',
+      type: 'advanced'
     },
     {
       title: '图表统计',
-      name: 'echarts'
+      name: 'echarts',
+      type: 'advanced'
     },
     {
       title: '图片上传',
-      name: 'upload'
+      name: 'upload',
+      type: 'advanced'
     },
     {
       title: '录音',
-      name: 'audio'
+      name: 'audio',
+      type: 'advanced'
     },
     {
       title: '分享功能',
-      name: 'share'
+      name: 'share',
+      type: 'advanced'
     },
     {
       title: '地图功能',
-      name: 'map'
+      name: 'map',
+      type: 'advanced'
     }
   ]
 })

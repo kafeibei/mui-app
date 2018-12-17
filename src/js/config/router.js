@@ -19,8 +19,20 @@ define({
     url: '/dist/pages/mine/index.html',
     id: 'mine-index'
   },
-  location: { //定位
-    url: '/dist/pages/global/location.html',
-    id: 'location-index'
+  select: { // 下拉选择框
+    url: '/dist/pages/basic/select.html',
+    id: 'basic-select'
+  },
+  datepicker: { // 日期时间选择器
+    url: '/dist/pages/basic/datepicker.html',
+    id: 'basic-datepicker'
+  },
+  actionsheet: {  // 操作表
+    url: '/dist/pages/basic/actionsheet.html',
+    id: 'basic-actionsheet'
+  },
+  popover: { // 弹出菜单
+    url: '/dist/pages/basic/popover.html',
+    id: 'basic-popover'
   }
 })

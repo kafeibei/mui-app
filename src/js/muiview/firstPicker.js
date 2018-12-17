@@ -5,10 +5,10 @@ define(['mui', 'muiPicker', 'muiPoppicker'], (mui, _muiPicker, _muiPoppicker) =>
       muiPicker.setData(data)
       let pickerBack = (cbk, params) => {
         if (params) {
-          params.selected && muiPicker.pickers[0].setSelectedValue(params.selected)
+          muiPicker.pickers[0].setSelectedValue(params.value)
         }
         muiPicker.show(item => {
-          cbk && cbk(item)
+          cbk && cbk(item, muiPicker)
         })
       }
       return pickerBack
