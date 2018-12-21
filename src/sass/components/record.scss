@@ -1,0 +1,48 @@
+@import "../global/var.scss";
+
+.record-sheet {
+  .mui-table-area {
+    padding: 0!important;
+  }
+  .btntext {
+    line-height: px2rem(84px);
+  }
+  .status-begin {
+    height: px2rem(258px);
+    line-height: px2rem(348px);
+    display: inline-block;
+    @include img-retina3('../../assets/audio/record@1x.png', '../../assets/audio/record@2x.png', '../../assets/audio/record@3x.png', px2rem(80px), px2rem(80px));
+    background-position: center px2rem(60px);
+    color: #8E9091;
+  }
+  .status-going {
+    height: px2rem(258px);
+    line-height: px2rem(378px);
+    text-align: center;
+    border-bottom: px2rem(2px) solid #ddd;
+  }
+  .process-area {
+    display: inline-block;
+    width: px2rem(380px);
+    height: px2rem(120px);
+    line-height: px2rem(120px);
+    overflow: hidden;
+  }
+  .process-going {
+    display: inline-block;
+    width: px2rem(1000px);
+    height: px2rem(120px);
+    @include img-retina3('../../assets/audio/recording.png', '../../assets/audio/recording.png', '../../assets/audio/recording.png', px2rem(380px), px2rem(120px));
+    background-repeat: repeat-x;
+    animation: traslateRight 20s linear infinite;
+  }
+}
+
+@keyframes traslateRight {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}

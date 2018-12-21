@@ -16,7 +16,7 @@ require(['vue', 'components/banner', 'utils/muiview', 'utils/storage', 'config/r
     },
     created () {
       this.initGuide()
-      storage.clear()
+      // storage.clear()
       let showGuide = storage.get('showGuide')
       if (showGuide) {
         muiview.closeSplashscreen()  // 关闭splash页面

@@ -34,5 +34,17 @@ define({
   popover: { // 弹出菜单
     url: '/dist/pages/basic/popover.html',
     id: 'basic-popover'
+  },
+  audio: { // 语音播放
+    url: '/dist/pages/advanced/audio.html',
+    id: 'advanced-audio'
+  },
+  record: { // 录音
+    url: '/dist/pages/advanced/record.html',
+    id: 'advanced-record'
+  },
+  image: { // 上传图片
+    url: '/dist/pages/advanced/image.html',
+    id: 'advanced-image'
   }
 })

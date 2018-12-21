@@ -1,5 +1,10 @@
 define(['api/index'], (ajaxApi) => {
-  var apiConfig = {}
-  var api = {}
+  let apiConfig = {
+    userLogin: '/cspAccount/login'
+  }
+  let api = {}
+  api.login = (config) => {
+    return ajaxApi.createAPI(apiConfig.userLogin, 'post', config)
+  }
   return api
 })

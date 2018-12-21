@@ -29,6 +29,21 @@ define(() => {
       name: 'divider'
     },
     {
+      title: '语音播放',
+      name: 'audio',
+      type: 'advanced'
+    },
+    {
+      title: '录音',
+      name: 'record',
+      type: 'advanced'
+    },
+    {
+      title: '上传图片',
+      name: 'image',
+      type: 'advanced'
+    },
+    {
       title: '日历选择',
       name: 'calendar',
       type: 'advanced'
@@ -46,11 +61,6 @@ define(() => {
     {
       title: '图片上传',
       name: 'upload',
-      type: 'advanced'
-    },
-    {
-      title: '录音',
-      name: 'audio',
       type: 'advanced'
     },
     {

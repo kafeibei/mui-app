@@ -190,5 +190,16 @@ define(['config/config', 'config/setting'], (getConfig, getSetting) => {
     return time < 10 ? '0' + time : time
   }
 
+  /*
+ * 间隔时间 intervalTime
+ * */
+  utils.intervalTime = (interval, format) => {
+    format = format || "min:sec"
+    return format
+      .replace("min", utils.operateTime(Math.floor(interval / 60)))
+      .replace("sec", utils.operateTime(Math.floor(interval % 60)))
+    return format
+  }
+
   return utils
 })

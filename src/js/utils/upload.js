@@ -64,7 +64,6 @@ define(['utils/muiview', 'utils/headers', 'api/index', 'api/link'], (muiview, re
   upload.ajax = (e, key, cbk) => {
     muiview.loading.show()
     let uploadUrl = ajaxApi.getUrl(api.uploadFile)
-    console.log('uploadUrl', uploadUrl)
     let task = plus.uploader.createUpload(uploadUrl, {
       method: 'POST'
     }, (t, status) => { // 上传完成
@@ -72,7 +71,6 @@ define(['utils/muiview', 'utils/headers', 'api/index', 'api/link'], (muiview, re
       if (status === 200) {
         let res = JSON.parse(t.responseText)
         if(res.code === '100'){
-          console.log('success', JSON.stringify(res.data))
           if (res.data && res.data[0]) {
             cbk && cbk(1, {
               url: res.data[0].portrait

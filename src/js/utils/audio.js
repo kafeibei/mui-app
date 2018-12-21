@@ -7,19 +7,19 @@ define(['utils/muiview', 'utils/headers', 'api/index', 'api/link'], (muiview, re
       title: '选择录音文件'
     }]
     if (!muiview.osplus()) {
-      cbk && cbk(1, 'http://www.seendio.com/static/img/video.29828cb.png')
+      cbk && cbk(0)
     } else {
       plus.nativeUI.actionSheet({
         cancel: '取消',
         buttons: uploadType
       }, (e) => {
         switch (e.index) {
-          case 1: { // 拍照
-            audio.byCamera(key, cbk)
+          case 1: { // 录音
+            audio.byRecord(key, cbk)
             break
           }
-          case 2: { // 从相册中选择
-            audio.byGallery(key, cbk)
+          case 2: { // 选择录音文件
+            audio.bySystem(key, cbk)
             break
           }
           default: {
@@ -29,33 +29,24 @@ define(['utils/muiview', 'utils/headers', 'api/index', 'api/link'], (muiview, re
       })
     }
   }
-  audio.byCamera = (key, cbk) => {
-    plus.camera.getCamera().captureImage((e) => {
-      plus.io.resolveLocalFileSystemURL(e, (entry) => {
-        audio.ajax(entry.toLocalURL(), key, cbk)
-      }, (e) => {
-        plus.nativeUI.toast('读取拍照文件错误：' + e.message)
-      })
-    }, (e) => {
-      console.error(e)
-    }, {
-      filter: 'image',
-      multiple: false,
-      system: false
-    })
+  audio.byRecord = (key, cbk) => {
+    cbk && cbk(0)
   }
-  audio.byGallery = (key, cbk) => {
-    plus.gallery.pick((path) => {
-      audio.ajax(path, key, cbk)
-    }, (e) => {
-      if (e.code === 8) {
-        // 设置访问权限
-        mui.alert('您可以在“隐私设置”中启用访问','此应用没有权限访问您的照片或视频', '好的')
-      }
-    }, {
-      filter: 'image',
-      multiple: false,
-      system: false
+  audio.bySystem = (key, cbk) => {
+    return false
+    plus.io.resolveLocalFileSystemURL('_doc/', entry => {
+      entry.getDirectory('audio', {create: true}, (dir) => {
+        let reader = dir.createReader()
+        reader.readEntries(entries => {
+          let musicList = []
+          for (let i in entries) {
+            if (entries[i].isFile) {
+              musicList.push(localUrl + entries[i].name)
+            }
+          }
+          audio.ajax(musicList[0])
+        })
+      })
     })
   }
   audio.ajax = (e, key, cbk) => {
@@ -68,7 +59,14 @@ define(['utils/muiview', 'utils/headers', 'api/index', 'api/link'], (muiview, re
       if (status === 200) {
         let res = JSON.parse(t.responseText)
         if(res.code === '100'){
-          cbk && cbk(1, res.data)
+          if (res.data && res.data[0]) {
+            cbk && cbk(1, {
+              url: res.data[0].portrait
+            })
+            audio.downInfo[res.data[0].portrait] = e
+          } else {
+            cbk && cbk(-1, '音频返回错误')
+          }
         } else {
           cbk && cbk(-1, res.message)
         }
@@ -91,6 +89,52 @@ define(['utils/muiview', 'utils/headers', 'api/index', 'api/link'], (muiview, re
     task.addData('uploadFileLocation', key || uploadLocation.base)
     task.start()
   }
+  audio.downInfo = {}
+  audio.downloader = (src, cbk) => {
+    if (audio.downInfo[src]) {
+      cbk(1, audio.downInfo[src])
+    } else {
+      let task = plus.downloader.createDownload(src, {
+        filename: '_doc/audio/'
+      }, (download, status) => {
+        if (status === 200) {
+          cbk(1, download.filename)
+          audio.downInfo[src] = download.filename
+        } else {
+          cbk(-1, '资源加载失败')
+        }
+      })
+      task.start()
+    }
+  }
+  audio.duration = (src, cbk, type) => {
+    let audioObj
+    if (!muiview.osplus() || type) {
+      audioObj = audio.audioObj = new Audio()
+      audioObj.src = src
+      audioObj.onloadedmetadata = () => {
+        cbk && cbk(1, parseInt(audioObj.duration))
+      }
+      audioObj.onerror = () => {
+        cbk && cbk(-1, 'audio')
+      }
+    } else {
+      audio.downloader(src, (code, local) => {
+        if (code > 0) {
+          audioObj = audio.audioObj = plus.audio.createPlayer(local)
+          let duration = audioObj.getDuration()
+          if (isNaN(duration)) {
+            cbk && cbk(-1, 'h5+')
+          } else {
+            cbk && cbk(1, parseInt(audioObj.getDuration()))
+          }
+        } else {
+          cbk && cbk(-1, local)
+        }
+
+      })
+    }
+  }
   audio.play = (src, cbk) => {
     let audioObj
     if (!muiview.osplus()) {
@@ -104,18 +148,20 @@ define(['utils/muiview', 'utils/headers', 'api/index', 'api/link'], (muiview, re
         cbk && cbk(1)
       }
     } else {
-      audioObj = audio.audioObj = plus.audio.createPlayer(src)
-      console.log('src', src)
-      audioObj.play(() => {
-        console.log(1)
-        cbk && cbk(1)
-      }, (e) => {
-        console.log(-1)
-        cbk && cbk(-1, e.message)
+      audio.downloader(src, (code, local) => {
+        if (code > 0) {
+          audioObj = audio.audioObj = plus.audio.createPlayer(local)
+          audioObj.play(() => {
+            audio.positioncbk && audio.positioncbk(1, parseInt(audioObj.getDuration()))
+          }, (e) => {
+            cbk && cbk(-1, e.message)
+            audio.positioncbk && audio.positioncbk(-1, parseInt(e.message))
+          })
+          cbk && cbk(1)
+        } else {
+          cbk && cbk(-1, local)
+        }
       })
-      setTimeout(() => {
-        console.log(audioObj.getPosition())
-      }, 1200)
     }
   }
   audio.stop = (cbk) => {
@@ -127,8 +173,24 @@ define(['utils/muiview', 'utils/headers', 'api/index', 'api/link'], (muiview, re
       audio.audioObj.ontimeupdate = () => {
         cbk && cbk(1, audio.audioObj.currentTime)
       }
+      audio.audioObj.onended = () => {
+        cbk && cbk(1, parseInt(audio.audioObj.duration))
+      }
     } else {
-
+      let duration = parseInt(audio.audioObj.getDuration())
+      let i = 0
+      audio.iternvalTime = setInterval(() => {
+        i++
+        let position = audio.audioObj.getPosition()
+        cbk && cbk(1, position)
+        if (i >= duration) {
+          clearInterval(audio.iternvalTime)
+          audio.iternvalTime = 0
+        }
+      }, 1000)
+      if (cbk) {
+        audio.positioncbk = cbk  // 进度cbk
+      }
     }
   }
   return audio

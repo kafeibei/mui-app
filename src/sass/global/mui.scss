@@ -174,9 +174,14 @@
       letter-spacing: px2rem(0.35px);
     }
     .mui-action-back {
+      display: inline-block;
+      width: px2rem(86px);
+      height: px2rem(86px);
       color: #fff;
       font-size: px2rem(36px);
       font-weight: bold;
+      @include img-retina3('../../assets/global/icon_arrow_right.png', '../../assets/global/icon_arrow_right.png', '../../assets/global/icon_arrow_right.png', px2rem(42px), px2rem(42px));
+      background-position: left center;
     }
     .mui-text-primary {
       line-height: px2rem(88px);

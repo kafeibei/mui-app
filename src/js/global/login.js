@@ -4,7 +4,7 @@ require(['vue', 'md5', 'api/login', 'config/router', 'config/config', 'config/us
     data () {
       return {
         form: {
-          loginName: 'test',
+          loginName: '11101002',
           password: ''
         },
         password: '123456',
@@ -17,9 +17,6 @@ require(['vue', 'md5', 'api/login', 'config/router', 'config/config', 'config/us
         },
         selectionChecked: false
       }
-    },
-    created () {
-      this.form.loginName = storage.get('loginName') || this.form.loginName
     },
     methods: {
       onSubmit (event) {
@@ -80,7 +77,7 @@ require(['vue', 'md5', 'api/login', 'config/router', 'config/config', 'config/us
         }
       },
       triggerchecked () {
-        console.log('yaya')
+        console.info('checked')
       },
       changeInput (type, value) {
         this.$set(this.formConfig, type + 'Hide', !value)

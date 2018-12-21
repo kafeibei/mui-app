@@ -3,8 +3,8 @@
 */
 define(() => {
   let getEnv = () => {
-    return 'testing'
-    // return 'develop'
+    // return 'testing'
+    return 'prerelease'
   }
   return getEnv
 })

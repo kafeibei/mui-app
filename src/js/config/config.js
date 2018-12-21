@@ -2,7 +2,7 @@ define(['utils/env'], (getEnv) => {
   let config = {
     APIDevPrefix: '', // 开发环境
     APITestPrefix: '', // 测试环境
-    APIPrePrefix: '', // 预发布环境
+    APIPrePrefix: 'http://hwcsp.cn:7089/api/', // 预发布环境
     APIPrefix: '', // 线上环境
     imgHost: { // 图片地址
       develop: '',
@@ -12,7 +12,7 @@ define(['utils/env'], (getEnv) => {
     },
     mock: {
       upload: 0,
-      login: 1,
+      login: 0,
       register: 0
     }
   }

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>语音播放</title>
+		<title>录音</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -11,14 +11,14 @@
 	<body>
     <div id="page-container" class="page-container page-navbar advanced-audio" v-cloak>
 			<nav-bar :title="title" :config="navBarConfig"></nav-bar>
-			<div class="audio-section">
+			<div class="datepicker-section">
 				<upload-audio key="record" :data="audioList" :config="{
-					maxlength: 1
+					maxlength: 2
 				}"></upload-audio>
 			</div>
     </div>
 		<script src="../../../lib/require/require.min.js"></script>
 		<script src="../../js/global/main.js?v=$VERSION"></script>
-		<script src="../../js/advanced/audio.js?v=$VERSION"></script>
+		<script src="../../js/advanced/record.js?v=$VERSION"></script>
 	</body>
 </html>
