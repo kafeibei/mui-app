@@ -14,9 +14,6 @@ require(['vue', 'components/navBar', 'components/uploadAudio', 'utils/utils', 'u
         },
         audioList: []
       }
-    },
-    created () {
-
     }
   })
 })

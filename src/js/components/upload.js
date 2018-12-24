@@ -26,9 +26,10 @@ define(['vue', 'previewimage', 'utils/upload', 'utils/muiview'], (Vue, previewim
         triggerUpload () {
           upload.choose(this.config.key, (code, res) => {
             if (code > 0) {
-              this.data.push(res)
+              this.data.push({
+                url: res
+              })
             }
-            // this.$emit('uploadafter', code,  this.imgList)
           })
         },
         deleteImg (index) {

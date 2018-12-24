@@ -14,19 +14,13 @@ require(['vue', 'components/navBar', 'components/uploadAudio', 'utils/utils', 'u
         },
         audioList: [
           {
-            src: 'http://hwcsp.cn:7089/api/file/contract/1545389855134.amr'
+            src: 'http://hwcsp.cn:7089/api/file/contract/1545642819014.amr'
           },
           {
-            src: 'http://hwcsp.cn:7089/api/file/contract/1545382899013.wav'
+            src: 'http://hwcsp.cn:7089/api/file/contract/1545640841810.wav'
           }
         ]
       }
-    },
-    created () {
-
-    },
-    methods: {
-
     }
   })
 })

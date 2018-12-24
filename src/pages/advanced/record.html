@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="../../css/global/global.css?v=$VERSION" />
 	</head>
 	<body>
-    <div id="page-container" class="page-container page-navbar advanced-audio" v-cloak>
+    <div id="page-container" class="page-container page-navbar advanced-record" v-cloak>
 			<nav-bar :title="title" :config="navBarConfig"></nav-bar>
-			<div class="datepicker-section">
-				<upload-audio key="record" :data="audioList" :config="{
-					maxlength: 2
+			<div class="record-section">
+				<upload-audio :data="audioList" :config="{
+					maxlength: 2,
+					key: 'record'
 				}"></upload-audio>
 			</div>
     </div>

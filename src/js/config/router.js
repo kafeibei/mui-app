@@ -43,6 +43,14 @@ define({
     url: '/dist/pages/advanced/record.html',
     id: 'advanced-record'
   },
+  video: { // 视频播放
+    url: '/dist/pages/advanced/video.html',
+    id: 'advanced-video'
+  },
+  screen: { // 录像
+    url: '/dist/pages/advanced/screen.html',
+    id: 'advanced-screen'
+  },
   image: { // 上传图片
     url: '/dist/pages/advanced/image.html',
     id: 'advanced-image'

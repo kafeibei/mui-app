@@ -39,6 +39,16 @@ define(() => {
       type: 'advanced'
     },
     {
+      title: '视频播放',
+      name: 'video',
+      type: 'advanced'
+    },
+    {
+      title: '录像',
+      name: 'screen',
+      type: 'advanced'
+    },
+    {
       title: '上传图片',
       name: 'image',
       type: 'advanced'

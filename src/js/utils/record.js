@@ -1,4 +1,4 @@
-define(['utils/muiview', 'utils/audio'], (muiview, audio) => {
+define(['utils/muiview', 'utils/muiajax', 'utils/storage'], (muiview, muiajax, storage) => {
   let record = {}
   record.start = (key, cbk) => {
     if (!muiview.osplus()) {
@@ -12,8 +12,11 @@ define(['utils/muiview', 'utils/audio'], (muiview, audio) => {
       recordObj.record({filename: '_doc/audio/'}, (res) => {
         record.stopcbk && record.stopcbk(1)  // 录音结束
         plus.io.resolveLocalFileSystemURL(res, (entry) => {
-          audio.ajax(res, key, (code, remoteRes) => {
-            record.stopcbk && record.stopcbk(2, remoteRes.url)
+          muiajax(res, key, (code, data) => {
+            let localAudioInfo = storage.get('localAudioInfo') || {}
+            localAudioInfo[data] = res
+            storage.set('localAudioInfo', localAudioInfo)
+            record.stopcbk && record.stopcbk(2, data)
           })
         }, (e) => {
           plus.nativeUI.toast('读取录音文件错误：' + e.message)
@@ -28,7 +31,7 @@ define(['utils/muiview', 'utils/audio'], (muiview, audio) => {
     if (!muiview.osplus()) {
       cbk && cbk(1)
       setTimeout(() => {
-        cbk && cbk(2, 'http://hwcsp.cn:7089/api/file/contract/1545382899013.wav')
+        cbk && cbk(2, 'http://hwcsp.cn:7089/api/file/contract/1545640841810.wav')
       }, 1000)
     } else if (record.recordObj) {
       if (cbk) {

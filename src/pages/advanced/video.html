@@ -2,24 +2,24 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>语音播放</title>
+		<title>视频播放</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="../../css/global/global.css?v=$VERSION" />
 	</head>
 	<body>
-    <div id="page-container" class="page-container page-navbar advanced-audio" v-cloak>
+    <div id="page-container" class="page-container page-navbar advanced-video" v-cloak>
 			<nav-bar :title="title" :config="navBarConfig"></nav-bar>
-			<div class="audio-section">
-				<upload-audio :data="audioList" :config="{
+			<div class="video-section">
+				<upload-video :data="videoList" :config="{
 					maxlength: 1,
-					key: 'record'
-				}"></upload-audio>
+					key: 'screen'
+				}"></upload-video>
 			</div>
     </div>
 		<script src="../../../lib/require/require.min.js"></script>
 		<script src="../../js/global/main.js?v=$VERSION"></script>
-		<script src="../../js/advanced/audio.js?v=$VERSION"></script>
+		<script src="../../js/advanced/video.js?v=$VERSION"></script>
 	</body>
 </html>

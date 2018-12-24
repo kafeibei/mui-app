@@ -1,10 +1,10 @@
-define(['utils/muiview', 'utils/headers', 'api/index', 'api/link'], (muiview, renderHeaders, ajaxApi, api) => {
+define(['utils/muiview', 'utils/muiajax', 'utils/storage'], (muiview, muiajax, storage) => {
   let audio = {}
   audio.choose = (key, cbk) => {
     let uploadType = [{
       title: '录音'
-    }, {
-      title: '选择录音文件'
+    // }, {
+    //   title: '选择录音文件'
     }]
     if (!muiview.osplus()) {
       cbk && cbk(0)
@@ -44,62 +44,27 @@ define(['utils/muiview', 'utils/headers', 'api/index', 'api/link'], (muiview, re
               musicList.push(localUrl + entries[i].name)
             }
           }
-          audio.ajax(musicList[0])
+          muiajax(musicList[0], key, (code, data) => {
+            let localAudioInfo = storage.get('localAudioInfo') || {}
+            localAudioInfo[data] = musicList[0]
+            storage.set('localAudioInfo', localAudioInfo)
+          })
         })
       })
     })
   }
-  audio.ajax = (e, key, cbk) => {
-    muiview.loading.show()
-    let uploadUrl = ajaxApi.getUrl(api.uploadFile)
-    let task = plus.uploader.createUpload(uploadUrl, {
-      method: 'POST'
-    }, (t, status) => { // 上传完成
-      muiview.loading.close()
-      if (status === 200) {
-        let res = JSON.parse(t.responseText)
-        if(res.code === '100'){
-          if (res.data && res.data[0]) {
-            cbk && cbk(1, {
-              url: res.data[0].portrait
-            })
-            audio.downInfo[res.data[0].portrait] = e
-          } else {
-            cbk && cbk(-1, '音频返回错误')
-          }
-        } else {
-          cbk && cbk(-1, res.message)
-        }
-      } else {
-        cbk && cbk(-1, '上传失败')
-      }
-      muiview.loading.close()
-    }, (rej) => {
-      muiview.loading.close()
-      console.error('rej', rej)
-    })
-    let defineHeaders = renderHeaders()
-    for (let key in defineHeaders) {
-      task.setRequestHeader(key, defineHeaders[key])
-    }
-    // 添加其他参数
-    task.addFile(e, {
-      key: 'files'
-    })
-    task.addData('uploadFileLocation', key || uploadLocation.base)
-    task.start()
-  }
-  audio.downInfo = {}
   audio.downloader = (src, cbk) => {
-    if (audio.downInfo[src]) {
-      cbk(1, audio.downInfo[src])
+    let localAudioInfo = storage.get('localAudioInfo') || {}
+    if (localAudioInfo[src]) {
+      cbk(1, localAudioInfo[src])
     } else {
       let task = plus.downloader.createDownload(src, {
         filename: '_doc/audio/'
       }, (download, status) => {
         if (status === 200) {
+          localAudioInfo[src] = download.filename
           cbk(1, download.filename)
-          audio.downInfo[src] = download.filename
+          storage.set('localAudioInfo', localAudioInfo)
         } else {
           cbk(-1, '资源加载失败')
         }
@@ -124,9 +89,16 @@ define(['utils/muiview', 'utils/headers', 'api/index', 'api/link'], (muiview, re
           audioObj = audio.audioObj = plus.audio.createPlayer(local)
           let duration = audioObj.getDuration()
           if (isNaN(duration)) {
-            cbk && cbk(-1, 'h5+')
+            setTimeout(() => {
+              duration = audioObj.getDuration()
+              if (isNaN(duration)) {
+                cbk && cbk(-1, 'h5+')
+              } else {
+                cbk && cbk(1, parseInt(duration))
+              }
+            }, 800)
           } else {
-            cbk && cbk(1, parseInt(audioObj.getDuration()))
+            cbk && cbk(1, parseInt(duration))
           }
         } else {
           cbk && cbk(-1, local)

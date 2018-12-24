@@ -35,12 +35,10 @@
         "Events": {
             "description": "应用扩展事件"
         },
-        "Maps": {
-            "description": "管理地图插件"
-        },
+        "Maps": {},
         "Speech": {
             "description": "管理语音识别插件"
-        }
+        },"VideoPlayer":{},"LivePusher":{}
     },
     "plus": {
         "splashscreen": {
@@ -139,7 +137,7 @@
                     "xxhdpi": "dist/assets/splash/android-1080p.png"/*1080P高分屏启动图片，分辨率：1080x1882*/
                 }
             },"debug":true
-        }
+        },"adid":"125822260907"
     },
 	"dependencies":{
 		"pages": {
@@ -170,7 +168,6 @@
 				"dist/assets/bg.png",
 				"lib/mui/mui.previewimage.js",
 				"package.json",
-				"dist/js/config/uploadLocation.js",
 				"README.md",
 				"lib/mui/city.data.js",
 				"lib/mui/mui.min.css",

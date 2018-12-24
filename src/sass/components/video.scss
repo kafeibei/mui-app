@@ -1,0 +1,34 @@
+@import "../global/var.scss";
+
+.video-box {
+  position: relative;
+  width: px2rem(300px);
+  height: px2rem(240px);
+  margin: px2rem(30px) px2rem(30px) 0 0;
+  overflow: hidden;
+  &:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    @include img-retina3('../../assets/video/play.png', '../../assets/video/play.png', '../../assets/video/play.png', px2rem(97px), px2rem(96px));
+    background-color: rgba(0, 0, 0, 0.8);
+    content: '';
+  }
+  &.active:after {
+    @include img-retina3('../../assets/video/pause.png', '../../assets/video/pause.png', '../../assets/video/pause.png', px2rem(96px), px2rem(96px));
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  .video-area {
+    height: 100%;
+  }
+}
+#videoDom {
+  width: 100%;
+  height: px2rem(600px);
+}
+
+.img-upload.video-upload {
+  margin-top: px2rem(20px);
+}
