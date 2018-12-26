@@ -10,6 +10,9 @@ require(['vue', 'mui', 'components/bottomBar', 'components/navBar', 'config/func
         functions: functions
       }
     },
+    created () {
+      this.muiBack()
+    },
     methods: {
       goPage (type) {
         if (defineRouter[type]) {

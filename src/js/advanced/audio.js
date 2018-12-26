@@ -14,10 +14,10 @@ require(['vue', 'components/navBar', 'components/uploadAudio', 'utils/utils', 'u
         },
         audioList: [
           {
-            src: 'http://hwcsp.cn:7089/api/file/contract/1545642819014.amr'
+            src: 'http://hwcsp.cn:7089/api/file/contract/1545722604368.amr'
           },
           {
-            src: 'http://hwcsp.cn:7089/api/file/contract/1545640841810.wav'
+            src: 'http://demo.dcloud.net.cn/test/audio/apple.mp3'
           }
         ]
       }

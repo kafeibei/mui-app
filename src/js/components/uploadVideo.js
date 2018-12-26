@@ -5,7 +5,7 @@ define(['vue', 'utils/video', 'utils/muiview', 'utils/utils'], (Vue, video, muiv
         data: Array,
         config: Object
       },
-      template: `<div class="record-area">
+      template: `<div class="video-area">
         <div class="img-upload video-upload">
           <div class="video-box show-image hasimg hg-flex" v-for="(item, index) in videoList" :key="index" @click="playVideo(item, index)" :class="{active: index === playInfo.index && playInfo.on === 1}">
             <div class="video-area"></div>
@@ -64,7 +64,16 @@ define(['vue', 'utils/video', 'utils/muiview', 'utils/utils'], (Vue, video, muiv
               this.playInfo.on = 1
               setTimeout(() => {
                 video.play(item.src, (code, message) => {
-                  console.log('play', code, message)
+                  if (code < 0) {
+                    muiview.toast({
+                      message: message || '视频播放错误',
+                      cbk: () => {
+                        this.playInfo.on = -1
+                        this.playInfo.src = ''
+                        this.playInfo.index = -1
+                      }
+                    })
+                  }
                 })
               }, 50)
             }, 50)

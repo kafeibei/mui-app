@@ -14,12 +14,6 @@ require(['vue', 'components/navBar', 'components/upload', 'utils/utils', 'utils/
         },
         imageList: []
       }
-    },
-    created () {
-
-    },
-    methods: {
-
     }
   })
 })

@@ -1,4 +1,4 @@
-define(['vue', 'components/record', 'utils/audio', 'utils/muiview', 'utils/utils'], (Vue, widgetRecord, audio, muiview, utils) => {
+define(['vue', 'components/record', 'utils/audio', 'utils/muiview', 'utils/utils', 'config/router'], (Vue, widgetRecord, audio, muiview, utils, defineRouter) => {
   widgetRecord()
   let uploadAudio = () => {
     Vue.component('upload-audio', {
@@ -47,6 +47,7 @@ define(['vue', 'components/record', 'utils/audio', 'utils/muiview', 'utils/utils
         }
       },
       created () {
+        this.addEventListener()
         if (this.data) {
           this.audioList = this.data
           this.audioList.forEach((item, index) => {
@@ -60,30 +61,51 @@ define(['vue', 'components/record', 'utils/audio', 'utils/muiview', 'utils/utils
         }
       },
       methods: {
+        addEventListener () {
+          muiview.addEventListener('fireAudioChoose', defineRouter[this.config.key].id, (data) => {
+            if (data && data.toLocalURL) {
+              this.uploadAjax(data.toLocalURL)
+            }
+          })
+        },
+        uploadAjax (localUrl) {
+          audio.ajax(localUrl, 'audio', (code, data) => {
+            if (code > 0) {
+              let item = {
+                src: data
+              }
+              this.getDuration(item.src, (duration) => {
+                item.duration = duration
+                item.intervalDuration = utils.intervalTime(duration)
+                this.audioList.push(item)
+              })
+            }
+          })
+        },
         getDuration (src, cbk) {
           audio.duration(src, (code, duration) => {
             if (code > 0) {
               cbk && cbk(duration)
+            } else {
+              cbk && cbk(0)
             }
           })
         },
         triggerUpload () {
           audio.choose(this.config.key, (code, res) => {
             if (code === 0) {
-              this.sheetPopover.active = 'record'
+              this.sheetPopover.active = this.config.key
               setTimeout(() => {
                 mui('#' + this.sheetPopover.id).popover('toggle')
               }, 50)
               return false
-            }
-            if (code > 0) {
-              let item = {
-                src: res
-              }
-              this.getDuration(item.src, (duration) => {
-                item.duration = duration
-                item.intervalDuration = utils.intervalTime(duration)
-                this.audioList.push(item)
+            } else if (code === 1) {
+              muiview.openWebview({
+                url: defineRouter.audiochoose.url,
+                id: defineRouter.audiochoose.id,
+                extras: {
+                  pageFrom: this.config.key
+                }
               })
             }
           })

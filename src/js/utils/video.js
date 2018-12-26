@@ -58,6 +58,12 @@ define(['utils/muiview', 'utils/muiajax'], (muiview, muiajax) => {
       videoObj = video.videoObj = document.getElementById('videoDom')
       if (videoObj) {
         videoObj.play()
+        videoObj.onerror = (event) => {
+          cbk && cbk(-1, '视频播放错误')
+        }
+        videoObj.onloadedmetadata = () => {
+          cbk && cbk(1)
+        }
       }
     } else {
       videoObj = video.videoObj = new plus.video.VideoPlayer('videoDom', {

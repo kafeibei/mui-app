@@ -155,11 +155,11 @@ body a, .btntext {
 .invalid-code {
   text-align: center;
   padding: px2rem(320px) 0  px2rem(220px);
-  @include img-retina3('../../assets/global/nodata@1x.png', '../../assets/global/nodata@2x.png', '../../assets/global/nodata@3x.png', px2rem(216px), px2rem(202px));
+  @include img-retina3('../../assets/global/sad@1x.png', '../../assets/global/sad@2x.png', '../../assets/global/sad@3x.png', px2rem(192px), px2rem(192px));
   background-position: center px2rem(100px);
   background-color: #fff;
   p {
-    font-size: px2rem(28px);
+    font-size: px2rem(30px);
     color: #9DA7AC;
   }
 }

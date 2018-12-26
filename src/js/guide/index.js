@@ -15,8 +15,9 @@ require(['vue', 'components/banner', 'utils/muiview', 'utils/storage', 'config/r
       }
     },
     created () {
+      // muiview.openWebview(defineRouter.audiochoose)
+      // return false
       this.initGuide()
-      // storage.clear()
       let showGuide = storage.get('showGuide')
       if (showGuide) {
         muiview.closeSplashscreen()  // 关闭splash页面

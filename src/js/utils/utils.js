@@ -30,35 +30,7 @@ define(['config/config', 'config/setting'], (getConfig, getSetting) => {
     if (!data) {
       return ''
     }
-    let imgSrc
-    if (data && data.indexOf('http://') === -1) {
-      imgSrc = getConfig('imgHost') + data
-    } else {
-      imgSrc = data
-    }
-    let opStr = ''
-    if (imgSrc.indexOf('x-oss-process=image/resize') > -1) {
-      if (options.width) {
-        imgSrc = imgSrc.replace(/w_(\d+)/, (string, key) => {
-          return string.replace(key, options.width)
-        })
-      }
-      if (options.height) {
-        imgSrc = imgSrc.replace(/h_(\d+)/, (string, key) => {
-          return string.replace(key, options.height)
-        })
-      }
-    } else if (options.width || options.height) {
-      opStr = '?x-oss-process=image/resize'
-      if (options.width && options.height) {
-        opStr += ',m_fill,h_' + options.height + ',w_' + options.width
-      } else if (options.width) {
-        opStr += ',w_' + options.width
-      } else {
-        opStr += ',h_' + options.width
-      }
-    }
-    return [imgSrc, opStr].join('')
+    return data
   }
 
   /*
@@ -81,7 +53,7 @@ define(['config/config', 'config/setting'], (getConfig, getSetting) => {
     if (!utcstr) {
       newDate = new Date()
     } else {
-      if (mui.os.ios) {
+      if (mui.os.ios && typeof utcstr === 'string') {
         utcstr = utcstr.replace(/-/g, '/')
       }
       newDate = new Date(utcstr)
@@ -129,8 +101,8 @@ define(['config/config', 'config/setting'], (getConfig, getSetting) => {
       spendDay = 7 - dayOfWeek + 1
     }
     firstDay = new Date(today.getFullYear(), 0, 1 + spendDay)
-    var d = Math.ceil((today.valueOf()- firstDay.valueOf())/ 86400000)
-    var result = Math.ceil(d/7)
+    var d = Math.ceil((today.valueOf()- firstDay.valueOf()) / 86400000)
+    var result = Math.ceil(d / 7)
     return result + 1
   }
 
@@ -199,6 +171,14 @@ define(['config/config', 'config/setting'], (getConfig, getSetting) => {
       .replace("min", utils.operateTime(Math.floor(interval / 60)))
       .replace("sec", utils.operateTime(Math.floor(interval % 60)))
     return format
+  }
+
+  utils.bytesToSize = (bytes) => {
+    if (bytes === 0) return '0 B'
+    let k = 1024
+    let sizes = ['B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+    let i = Math.floor(Math.log(bytes) / Math.log(k))
+    return (bytes / Math.pow(k, i)).toPrecision(2) + ' ' + sizes[i]
   }
 
   return utils

@@ -39,6 +39,10 @@ define({
     url: '/dist/pages/advanced/audio.html',
     id: 'advanced-audio'
   },
+  audiochoose: { // 语音选择
+    url: '/dist/pages/advanced/audiochoose.html',
+    id: 'advanced-audiochoose'
+  },
   record: { // 录音
     url: '/dist/pages/advanced/record.html',
     id: 'advanced-record'

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>音频选择</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../../css/global/global.css?v=$VERSION" />
+    <link rel="stylesheet" href="../../css/audio/audiochoose.css?v=$VERSION" />
+	</head>
+	<body>
+    <div id="page-container" class="page-container page-navbar advanced-audiochoose" v-cloak>
+      <nav-bar :title="title" :config="navBarConfig"></nav-bar>
+			<div class="audiochoose-section">
+				<widget-loading :finish="finish" :errorcode="errorcode">
+					<div class="audio-list">
+		        <div class="audio-item hg-flex" v-for="(item, index) in listItems" :key="index" @click="chooseAudio(item, index)" :class="{active: curIndex === index}">
+		          <div class="audio-bg"></div>
+		          <div class="audio-info flex-one">
+		            <p class="audio-title">{{item.name}}</p>
+		            <div class="audio-setting">
+		              <span class="modificationTime">{{item.modificationTime}}</span>
+		              <span class="size">{{item.size}}</span>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+				</widget-loading>
+			</div>
+			<div class="mui-button-row" v-if="!errorcode">
+				<button type="button" class="mui-btn mui-btn-primary mui-btn-full" @click="cleanHistory">清除录音历史记录</button>
+			</div>
+    </div>
+		<script src="../../../lib/require/require.min.js"></script>
+		<script src="../../js/global/main.js?v=$VERSION"></script>
+		<script src="../../js/advanced/audiochoose.js?v=$VERSION"></script>
+	</body>
+</html>

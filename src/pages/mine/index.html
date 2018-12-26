@@ -13,6 +13,9 @@
     <div id="page-container" class="page-container page-navbar page-mine" v-cloak>
       <nav-bar :title="title" :config="navBarConfig"></nav-bar>
 			<hg-message :title="title"></hg-message>
+			<div class="mui-button-row">
+				<button type="button" class="mui-btn mui-btn-primary mui-btn-full" @click="cleanStorage">清除本地存储</button>
+			</div>
 			<bottom-bar active="mine"></bottom-bar>
     </div>
 		<script src="../../../lib/require/require.min.js"></script>

@@ -1,0 +1,42 @@
+@import "../global/var.scss";
+
+.advanced-audiochoose {
+  .audio-list {
+    background-color: #fff;
+  }
+  .audio-item {
+    position: relative;
+    padding: px2rem(20px);
+    border-bottom: px2rem(2px) solid #E8E8E8;
+    &:last-child {
+      border-bottom: none;
+    }
+    &.active:after {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      border: px2rem(2px) solid $primary;
+      content: '';
+    }
+  }
+  .audio-bg {
+    width: px2rem(96px);
+    height: px2rem(96px);
+    margin-right: px2rem(20px);
+    @include img-retina3('../../assets/audio/audiobg.png', '../../assets/audio/audiobg.png', '../../assets/audio/audiobg.png', px2rem(97px), px2rem(96px));
+  }
+  .audio-title {
+    color: #333;
+  }
+  .audio-setting {
+    color: #999;
+    .size {
+      margin: 0 px2rem(10px);
+    }
+  }
+  .mui-button-row {
+    margin: px2rem(20px);
+  }
+}

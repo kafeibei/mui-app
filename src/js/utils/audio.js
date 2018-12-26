@@ -1,13 +1,13 @@
-define(['utils/muiview', 'utils/muiajax', 'utils/storage'], (muiview, muiajax, storage) => {
+define(['utils/muiview', 'utils/muiajax', 'utils/storage', 'utils/utils'], (muiview, muiajax, storage, utils) => {
   let audio = {}
   audio.choose = (key, cbk) => {
     let uploadType = [{
       title: '录音'
-    // }, {
-    //   title: '选择录音文件'
+    }, {
+      title: '选择录音文件'
     }]
     if (!muiview.osplus()) {
-      cbk && cbk(0)
+      cbk && cbk(1)
     } else {
       plus.nativeUI.actionSheet({
         cancel: '取消',
@@ -33,33 +33,93 @@ define(['utils/muiview', 'utils/muiajax', 'utils/storage'], (muiview, muiajax, s
     cbk && cbk(0)
   }
   audio.bySystem = (key, cbk) => {
-    return false
-    plus.io.resolveLocalFileSystemURL('_doc/', entry => {
-      entry.getDirectory('audio', {create: true}, (dir) => {
-        let reader = dir.createReader()
-        reader.readEntries(entries => {
-          let musicList = []
-          for (let i in entries) {
-            if (entries[i].isFile) {
-              musicList.push(localUrl + entries[i].name)
-            }
+    cbk && cbk(1)
+  }
+  audio.filename = 'Music'
+  audio.directory = (key, cbk) => {
+    if (!muiview.osplus()) {
+      cbk && cbk(1, [{
+        name: 'Recorder_004.wav',
+        modificationTime: '2018/12/21 17:37',
+        size: '83KB',
+        toLocalURL: '_doc/audio/Recorder_004.wav'
+      }, {
+        name: 'song.ogg',
+        modificationTime: '2018/12/24 16:49',
+        size: '5.5KB',
+        toLocalURL: '_doc/audio/song.ogg'
+      }])
+    } else {
+      plus.io.resolveLocalFileSystemURL('_doc/', entry => {
+        entry.getDirectory(audio.filename, {create: true}, (dir) => {
+          let reader = dir.createReader()
+          let getEntries = () => {
+            reader.readEntries(results => {
+              if (results.length) {
+                let entries = []
+                for (let i in results) {
+                  if (results[i].isFile) {
+                    let item = {
+                      name: results[i].name,
+                      toLocalURL: results[i].toLocalURL()
+                    }
+                    results[i].getMetadata((metadata) => {
+                      item.modificationTime = utils.formatDate(metadata.modificationTime, 'YYYY/MM/DD hh:mm')
+                      item.size = utils.bytesToSize(metadata.size)
+                      entries.push(item)
+                    })
+                  }
+                }
+                setTimeout(() => {
+                  cbk && cbk(1, entries)
+                }, 80)
+              } else {
+                cbk && cbk(1, [])
+              }
+            }, (error) => {
+              cbk && cbk(-1, error.message)
+            })
           }
-          muiajax(musicList[0], key, (code, data) => {
-            let localAudioInfo = storage.get('localAudioInfo') || {}
-            localAudioInfo[data] = musicList[0]
-            storage.set('localAudioInfo', localAudioInfo)
-          })
+          getEntries()
         })
       })
+    }
+  }
+  audio.cleanHistory = (cbk) => {
+    if (!muiview.osplus()) {
+      cbk && cbk(1)
+    } else {
+      plus.io.resolveLocalFileSystemURL('_doc/', entry => {
+        entry.getDirectory(audio.filename, {create: true}, (dir) => {
+          dir.removeRecursively(() => {
+            cbk && cbk(1)
+          }, () => {
+            cbk && cbk(-1)
+          })
+
+        })
+      })
+    }
+  }
+  audio.ajax = (res, key, cbk) => {
+    muiajax(res, key, (code, data) => {
+      let localAudioInfo = storage.get('localAudioInfo') || {}
+      localAudioInfo[data] = res
+      storage.set('localAudioInfo', localAudioInfo)
+      cbk && cbk(code, data)
     })
   }
   audio.downloader = (src, cbk) => {
+    if (muiview.platform() === 'android') {
+      cbk(1, src)
+      return false
+    }
     let localAudioInfo = storage.get('localAudioInfo') || {}
     if (localAudioInfo[src]) {
       cbk(1, localAudioInfo[src])
     } else {
       let task = plus.downloader.createDownload(src, {
-        filename: '_doc/audio/'
+        filename: '_doc/' + audio.filename + '/'
       }, (download, status) => {
         if (status === 200) {
           localAudioInfo[src] = download.filename

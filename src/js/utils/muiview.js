@@ -321,11 +321,19 @@ define(['mui', 'utils/utils', 'utils/storage'], (mui, utils, storage) => {
       mui.back()
     }
   }
+  muiview.platform = () => {
+    if (mui.os.android) {
+      return 'android'
+    } else if (mui.os.ios) {
+      return 'ios'
+    }
+    return 'unknown'
+  }
   muiview.copyToClip = (str) => {
     if (!muiview.osplus()) {
       console.info('复制的内容是', str)
     } else {
-      if(mui.os.ios) {
+      if(muiview.platform === 'ios') {
 				let UIPasteboard = plus.ios.importClass('UIPasteboard')
 				let generalPasteboard = UIPasteboard.generalPasteboard()
 				generalPasteboard.setValueforPasteboardType(str, 'public.utf8-plain-text')
