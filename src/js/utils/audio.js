@@ -1,5 +1,9 @@
 define(['utils/muiview', 'utils/muiajax', 'utils/storage', 'utils/utils'], (muiview, muiajax, storage, utils) => {
   let audio = {}
+  audio.config = {
+    filepath: '/sdcard/',
+    filename: 'Sounds'
+  }
   audio.choose = (key, cbk) => {
     let uploadType = [{
       title: '录音'
@@ -35,23 +39,22 @@ define(['utils/muiview', 'utils/muiajax', 'utils/storage', 'utils/utils'], (muiv
   audio.bySystem = (key, cbk) => {
     cbk && cbk(1)
   }
-  audio.filename = 'Music'
   audio.directory = (key, cbk) => {
     if (!muiview.osplus()) {
       cbk && cbk(1, [{
         name: 'Recorder_004.wav',
         modificationTime: '2018/12/21 17:37',
         size: '83KB',
-        toLocalURL: '_doc/audio/Recorder_004.wav'
+        toLocalURL: audio.config.filepath + audio.config.filename + '/Recorder_004.wav'
       }, {
         name: 'song.ogg',
         modificationTime: '2018/12/24 16:49',
         size: '5.5KB',
-        toLocalURL: '_doc/audio/song.ogg'
+        toLocalURL: audio.config.filepath + audio.config.filename + '/song.ogg'
       }])
     } else {
-      plus.io.resolveLocalFileSystemURL('_doc/', entry => {
-        entry.getDirectory(audio.filename, {create: true}, (dir) => {
+      plus.io.resolveLocalFileSystemURL(audio.config.filepath, (entry) => {
+        entry.getDirectory(audio.config.filename, {create: true}, (dir) => {
           let reader = dir.createReader()
           let getEntries = () => {
             reader.readEntries(results => {
@@ -82,6 +85,8 @@ define(['utils/muiview', 'utils/muiajax', 'utils/storage', 'utils/utils'], (muiv
           }
           getEntries()
         })
+      }, (error) => {
+        cbk && cbk(-1, error.message)
       })
     }
   }
@@ -89,15 +94,16 @@ define(['utils/muiview', 'utils/muiajax', 'utils/storage', 'utils/utils'], (muiv
     if (!muiview.osplus()) {
       cbk && cbk(1)
     } else {
-      plus.io.resolveLocalFileSystemURL('_doc/', entry => {
-        entry.getDirectory(audio.filename, {create: true}, (dir) => {
+      plus.io.resolveLocalFileSystemURL(audio.config.filepath, (entry) => {
+        entry.getDirectory(audio.config.filename, {create: true}, (dir) => {
           dir.removeRecursively(() => {
             cbk && cbk(1)
-          }, () => {
-            cbk && cbk(-1)
+          }, (error) => {
+            cbk && cbk(-1, error.message)
           })
-
         })
+      }, (error) => {
+        cbk && cbk(-1, error.message)
       })
     }
   }
@@ -119,7 +125,7 @@ define(['utils/muiview', 'utils/muiajax', 'utils/storage', 'utils/utils'], (muiv
       cbk(1, localAudioInfo[src])
     } else {
       let task = plus.downloader.createDownload(src, {
-        filename: '_doc/' + audio.filename + '/'
+        filename: audio.config.filepath + audio.config.filename + '/'
       }, (download, status) => {
         if (status === 200) {
           localAudioInfo[src] = download.filename

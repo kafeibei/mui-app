@@ -58,5 +58,13 @@ define({
   image: { // 上传图片
     url: '/dist/pages/advanced/image.html',
     id: 'advanced-image'
+  },
+  map: { // 地图组件
+    url: '/dist/pages/advanced/map.html',
+    id: 'advanced-map'
+  },
+  calendar: { // 日历选择
+    url: '/dist/pages/advanced/calendar.html',
+    id: 'advanced-calendar'
   }
 })

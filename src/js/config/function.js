@@ -54,6 +54,11 @@ define(() => {
       type: 'advanced'
     },
     {
+      title: '地图功能',
+      name: 'map',
+      type: 'advanced'
+    },
+    {
       title: '日历选择',
       name: 'calendar',
       type: 'advanced'
@@ -76,11 +81,6 @@ define(() => {
     {
       title: '分享功能',
       name: 'share',
-      type: 'advanced'
-    },
-    {
-      title: '地图功能',
-      name: 'map',
       type: 'advanced'
     }
   ]

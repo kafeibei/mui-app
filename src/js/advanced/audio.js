@@ -14,7 +14,7 @@ require(['vue', 'components/navBar', 'components/uploadAudio', 'utils/utils', 'u
         },
         audioList: [
           {
-            src: 'http://hwcsp.cn:7089/api/file/contract/1545722604368.amr'
+            src: 'http://www.w3school.com.cn/i/horse.ogg'
           },
           {
             src: 'http://demo.dcloud.net.cn/test/audio/apple.mp3'

@@ -1,0 +1,66 @@
+[
+  {
+    "name": "湖南省长沙市雨花区G4(京港澳高速)",
+    "longlat": "-10",
+    "point": {
+      "longitude": "113.04397",
+      "latitude": "28.16634"
+    }
+  },
+  {
+    "name": "湖南省长沙市雨花区G4(京港澳高速)",
+    "longlat": "-11",
+    "point": {
+      "longitude": "113.04397",
+      "latitude": "28.16634"
+    }
+  },
+  {
+    "name": "湖南省长沙市雨花区G4(雨花枢纽)",
+    "longlat": "0-1",
+    "point": {
+      "longitude": "113.04397",
+      "latitude": "28.16634"
+    }
+  },
+  {
+    "name": "湖南省长沙市雨花区G4(京港澳高速)",
+    "longlat": "00",
+    "point": {
+      "longitude": "113.04397",
+      "latitude": "28.16634"
+    }
+  },
+  {
+    "name": "湖南省长沙市雨花区G4(京港澳高速)",
+    "longlat": "01",
+    "point": {
+      "longitude": "113.04397",
+      "latitude": "28.16634"
+    }
+  },
+  {
+    "name": "湖南省长沙市雨花区雨花枢纽",
+    "longlat": "1-1",
+    "point": {
+      "longitude": "113.04397",
+      "latitude": "28.16634"
+    }
+  },
+  {
+    "name": "湖南省长沙市雨花区石坝路",
+    "longlat": "10",
+    "point": {
+      "longitude": "113.04397",
+      "latitude": "28.16634"
+    }
+  },
+  {
+    "name": "湖南省长沙市雨花区沙湾路",
+    "longlat": "11",
+    "point": {
+      "longitude": "113.04397",
+      "latitude": "28.16634"
+    }
+  }
+]

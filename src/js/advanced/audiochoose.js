@@ -33,15 +33,22 @@ require(['vue', 'components/navBar', 'components/widgetLoading', 'utils/utils', 
     methods: {
       directory () {
         audio.directory('audio', (code, data) => {
-          if (data && data[0]) {
-            this.listItems = data
-            this.errorcode = ''
+          this.finish = true
+          if (code > 0) {
+            if (data && data[0]) {
+              this.listItems = data
+              this.errorcode = ''
+            } else {
+              this.listItems = []
+              this.errorcode = '暂无可选择的录音文件~'
+              this.navBarConfig.right.title = '返回'
+            }
           } else {
             this.listItems = []
-            this.errorcode = '暂无可选择的录音文件~'
+            this.errorcode = data
             this.navBarConfig.right.title = '返回'
           }
-          this.finish = true
+
         })
       },
       chooseAudio (item, index) {
@@ -94,6 +101,12 @@ require(['vue', 'components/navBar', 'components/widgetLoading', 'utils/utils', 
               })
             }
           }
+        })
+      },
+      goPage (type) {
+        muiview.openWebview({
+          url: '/dist/pages/choose/'  + type + '.html',
+          id: 'audio-' + type
         })
       }
     }

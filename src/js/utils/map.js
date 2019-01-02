@@ -4,21 +4,23 @@ define(['utils/muiview', 'api/global'], (muiview, api) => {
   // 获取当前位置的经纬度
   utilsMap.getCurrentPosition = (cbk) => {
     plus.geolocation.getCurrentPosition((position) => {
-      position.coords.longitude = '113.04397'
-      position.coords.latitude = '28.16634'
-      cbk && cbk(position.coords.longitude, position.coords.latitude)
+      cbk && cbk(1, position.coords)
     }, (e) => {
-      muiview.toast({
-        message: '异常：' + e.message
-      })
+      cbk && cbk(-1, e.message)
     })
   }
 
   // 以当前位置为中心
-  utilsMap.goCurrentPosition = () => {
-    utilsMap.getCurrentPosition((longitude, latitude) => {
-      utilsMap.centerMap(longitude, latitude)
-    })
+  utilsMap.goCurrentPosition = (cbk) => {
+    if (!muiview.osplus()) {
+      setTimeout(() => {
+        cbk && cbk(1)
+      }, 1000)
+    } else {
+      utilsMap.getCurrentPosition((code, point) => {
+        utilsMap.centerMap(point, cbk)
+      })
+    }
   }
 
   // 地址转化为经纬度，并以该经纬度为中心
@@ -29,56 +31,62 @@ define(['utils/muiview', 'api/global'], (muiview, api) => {
     if (!muiview.osplus()) {
       cbk && cbk(1)
     } else {
-      plus.maps.Map.geocode(address,{city:"北京"},(event) => {
+      plus.maps.Map.geocode(address, {city: utilsMap.city}, (event) => {
     		let point = event.coord
-        utilsMap.centerMap(point.longitude, point.latitude)
-        cbk && cbk(1)
+        utilsMap.centerMap(point, cbk)
     	}, (e) => {
         cbk && cbk(-1)
-    		console.log("Failed:"+JSON.stringify(e));
+        muiview.toast({
+          message: '异常：' + e.message
+        })
     	})
     }
   }
 
   // 实例化地图
-  utilsMap.initMap = (id, longitude, latitude, cbk) => {
+  utilsMap.initMap = (id, point, cbk) => {
     let appMap = utilsMap.appMap = new plus.maps.Map(id, {
       top: 0,
       left: 0,
       width: '100%',
-      height: 300
+      height: 300,
+      zoom: 15
     })
     // appMap.showUserLocation(true)
-    utilsMap.centerMap(longitude, latitude)
-    utilsMap.addMarker(longitude, latitude)
-    cbk && cbk(1)
+    utilsMap.centerMap(point, cbk)
   }
 
   // 以特定经纬度为中心
-  utilsMap.centerMap = (longitude, latitude) => {
-    let curPoint = new plus.maps.Point(longitude, latitude)
-    utilsMap.appMap.centerAndZoom(curPoint, 15)
+  utilsMap.centerMap = (point, cbk) => {
+    if (!muiview.osplus()) {
+      setTimeout(() => {
+        cbk && cbk(1)
+      }, 1000)
+    } else {
+      let curPoint = new plus.maps.Point(point.longitude, point.latitude)
+      utilsMap.appMap.centerAndZoom(curPoint, 15)
+      utilsMap.addMarker(point, cbk)
+    }
   }
 
-  utilsMap.addMarker = (longitude, latitude, cbk) => {
-    // let curPoint = new plus.maps.Point(longitude, latitude)
-    // console.log('addMarker', addMarker)
-    // let curPosition = new plus.maps.Position(curPoint)
-    // console.log('curMarker', longitude, latitude)
-    // console.log('curPosition', JSON.stringify(curPosition))
+  utilsMap.addMarker = (point, cbk) => {
+    utilsMap.appMap.removeOverlay(utilsMap.curMarker)
+    let curPoint = new plus.maps.Point(point.longitude, point.latitude)
+    let curMarker = utilsMap.curMarker = new plus.maps.Marker(curPoint)
 
-    // let curMarker = new plus.maps.Marker(curPoint)
-    // curMarker.setIcon('http://iconfont.alicdn.com/t/1532136228348.png@200h_200w.jpg')
-    // curMarker.setLabel('HBuilder')
+    let curPosition = new plus.maps.Position(curPoint)
+    curMarker.setLabel(curPosition.name || '')
+    utilsMap.appMap.addOverlay(curMarker)
+    cbk && cbk(1)
   }
 
   // 经纬度转化为地址
-  utilsMap.reverseGeocode = (longitude, latitude, cbk) => {
-    let curPoint = new plus.maps.Point(longitude, latitude)
-    plus.maps.Map.reverseGeocode(curPoint,{},function(event){
-      cbk && cbk(event.address)
-  	},function(e){
-  		console.log("Failed:"+JSON.stringify(e));
+  utilsMap.reverseGeocode = (point, cbk) => {
+    let curPoint = new plus.maps.Point(point.longitude, point.latitude)
+    plus.maps.Map.reverseGeocode(curPoint, {}, (event) => {
+      cbk && cbk(1, event.address)
+  	}, (e) => {
+      cbk && cbk(-1, e.message)
   	})
   }
 
@@ -86,35 +94,46 @@ define(['utils/muiview', 'api/global'], (muiview, api) => {
     if (!muiview.osplus()) {
       api.locationConfig()
         .then(res => {
-          cbk && cbk(res)
+          cbk && cbk(1, res)
         })
     } else {
-      utilsMap.getCurrentPosition((longitude, latitude) => {
-        let nearbyAddress = []
-        for (let i = -1; i < 2; i++) {
-          for (let j = -1; j < 2; j++) {
-            utilsMap.reverseGeocode(longitude - i * 0.002, latitude - j * 0.002, (address) => {
-              nearbyAddress.push({
-                title: address,
-                id: [i, j].join('')
-              })
-              cbk && cbk(nearbyAddress)
-            })
+      utilsMap.getCurrentPosition((code, point) => {
+        let curSearch = new plus.maps.Search(utilsMap.appMap)
+        let results = []
+        let mKeys = ['小区', '写字楼', '商场', '餐厅', '酒店', '医院']
+        let mLen = mKeys.length
+        let mNumber = 0
+        let mRight = 0
+        let mError = 0
+        curSearch.onPoiSearchComplete = (state, result) => {
+          mNumber ++
+          if (state === 0) {
+            mRight ++
+            if (result.currentNumber > 0) {
+              for (let i = 0,len = result.currentNumber; i < len; i++) {
+                let pos = result.getPosition(i)
+                pos.longlat = [pos.point.longitude,  pos.point.latitude].join('_')
+                results.push(pos)
+              }
+            }
+          } else {
+            mError ++
+          }
+          if (mNumber === mLen) {
+            if (mError === mNumber) {
+              cbk && cbk(-1, '检索失败')
+            }
+            if (results.length === 0) {
+              cbk && cbk(-1, '没有检索到结果')
+            } else {
+              utilsMap.city = results[0].city
+              cbk && cbk(1, results)
+            }
           }
         }
-      })
-    }
-  }
-
-  utilsMap.getCurrentCenter = () => {
-    if (utilsMap.appMap) {
-      utilsMap.appMap.getCurrentCenter((state, point) => {
-        if (0 == state) {
-          setTimeout(() => {
-            utilsMap.addMarker(point.longitude, point.latitude)
-          }, 800)
-        } else {
-          console.log('failed')
+        let curPoint = new plus.maps.Point(point.longitude, point.latitude)
+        for (let i = 0; i < mLen; i++) {
+          curSearch.poiSearchNearBy(mKeys[i], curPoint, 350)
         }
       })
     }
@@ -129,14 +148,13 @@ define(['utils/muiview', 'api/global'], (muiview, api) => {
       cbk && cbk(1)
     } else {
       mui.plusReady(() => {
-        utilsMap.getCurrentPosition((longitude, latitude) => {
-          utilsMap.initMap(id, longitude, latitude, cbk)
+        utilsMap.getCurrentPosition((code, point) => {
+          utilsMap.initMap(id, point, cbk)
         }, () => {
           cbk && cbk(-1)
         })
       })
     }
   }
-
   return utilsMap
 })

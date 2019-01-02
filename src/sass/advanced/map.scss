@@ -1,0 +1,57 @@
+@import "../global/var.scss";
+
+.page-map {
+  background-color: #fff;
+  min-height: 100vh;
+  .location-search {
+    position: fixed;
+    left: 0;
+    top: px2rem(88px);
+    width: 100%;
+    padding: px2rem(15px) px2rem(16px);
+    background-color: #fff;
+    z-index: 12;
+  }
+  .map-area {
+    position: fixed;
+    left: 0;
+    top: px2rem(178px);
+    width: 100%;
+    background-color: #888;
+    height: px2rem(456px);
+    z-index: 11;
+  }
+  .page-loading {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9;
+    padding: px2rem(634px) 0 px2rem(98px);
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+  }
+  .location-item {
+    line-height: px2rem(98px);
+    padding: 0 px2rem(32px);
+    font-size: px2rem(30px);
+    color: $textTitle;
+    border-bottom: px2rem(2px) solid #fafafa;
+  }
+  .mui-checkbox {
+    margin: 0 px2rem(20px);
+  }
+  .relocation-btn {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 11;
+    background-color: #fff;
+    height: px2rem(76px);
+    line-height: px2rem(76px);
+    text-align: center;
+    color: $primary;
+    box-shadow: 0 -1px 4px 0 rgba(0,0,0,0.03);
+  }
+}

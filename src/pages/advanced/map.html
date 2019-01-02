@@ -7,28 +7,32 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="../../css/global/global.css?v=$VERSION" />
-    <link rel="stylesheet" href="../../css/home/style.css?v=$VERSION" />
+		<link rel="stylesheet" href="../../css/advanced/map.css?v=$VERSION" />
 	</head>
 	<body>
-    <div id="page-container" class="page-container page-navbar page-bottombar page-home" v-cloak>
+    <div id="page-container" class="page-container page-navbar page-map" v-cloak>
 			<nav-bar :title="title" :config="navBarConfig"></nav-bar>
-			<div class="home-index">
-
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell" v-for="(item, index) in functions" :key="item.name + '_' + index" :class="'cell_' + item.name">
-						<div class="function-divider" v-if="item.name === 'divider'">{{item.title}}</div>
-						<div class="function-page hg-flex" @click="goPage(item.name)" v-else>
-							<span class="label">{{item.title}}</span>
-	            <div class="mui-navigate-right flex-one"></div>
-						</div>
-
-          </li>
-        </ul>
+			<div class="location-search">
+        <div class="mui-input-row input-search">
+          <input type="search" class="mui-input-clear" v-model="address" placeholder="请输入搜索范围内的地址名称" @keyup.enter="addressSearch">
+      	</div>
+				<!-- <div @click="addressSearch">地址搜索</div> -->
 			</div>
-			<bottom-bar active="home"></bottom-bar>
+      <div class="map-area" id="map"></div>
+			<widget-loading :finish="finish" :errorcode="errorcode">
+				<div class="location-list">
+	        <div class="location-item hg-flex" v-for="(item, index) in listItems" :key="index" @click="goSpecificPoint(item)">
+	  				<div class="location-title flex-one">{{item.name}}</div>
+	          <div class="mui-input-row mui-radio mui-big-size">
+	            <input name="longlat" :value="item.longlat" type="radio" v-model="curItem.longlat"/>
+	          </div>
+	        </div>
+				</div>
+			</widget-loading>
+      <div class="relocation-btn" @click="currentPosition">找不到我的位置，重新定位</div>
     </div>
 		<script src="../../../lib/require/require.min.js"></script>
 		<script src="../../js/global/main.js?v=$VERSION"></script>
-		<script src="../../js/home/index.js?v=$VERSION"></script>
+		<script src="../../js/advanced/map.js?v=$VERSION"></script>
 	</body>
 </html>
