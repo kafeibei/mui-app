@@ -5,7 +5,7 @@ require(['vue', 'components/navBar', 'components/widgetLoading', 'utils/muiview'
     el: '#page-container',
     data () {
       return {
-        title: '地图组件',
+        title: '地图定位',
         navBarConfig: {
           left: {
             type: 'icon',

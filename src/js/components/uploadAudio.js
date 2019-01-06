@@ -11,7 +11,8 @@ define(['vue', 'components/record', 'utils/audio', 'utils/muiview', 'utils/utils
           <div class="audio-box show-image hasimg" v-for="(item, index) in audioList" :key="index">
             <div class="audio-area flex">
               <div class="operate" @click="playAudio(item, index)">
-                <span v-if="playInfo.on === 1 && playInfo.index === index" class="iconfont icon-pause"></span>
+                <span class="iconfont icon-loaded" v-if="!item.loaded"></span>
+                <span v-else-if="playInfo.on === 1 && playInfo.index === index" class="iconfont icon-pause"></span>
                 <span v-else class="iconfont icon-play"></span>
               </div>
               <span class="time">{{item.intervalDuration || '00:00'}}</span>
@@ -51,8 +52,10 @@ define(['vue', 'components/record', 'utils/audio', 'utils/muiview', 'utils/utils
         if (this.data) {
           this.audioList = this.data
           this.audioList.forEach((item, index) => {
+            this.$set(item, 'loaded', false)
             setTimeout(() => {
               this.getDuration(item.src, (duration) => {
+                this.$set(item, 'loaded', true)
                 this.$set(item, 'duration', duration)
                 this.$set(item, 'intervalDuration', utils.intervalTime(duration))
               })
@@ -75,6 +78,7 @@ define(['vue', 'components/record', 'utils/audio', 'utils/muiview', 'utils/utils
                 src: data
               }
               this.getDuration(item.src, (duration) => {
+                item.loaded = true
                 item.duration = duration
                 item.intervalDuration = utils.intervalTime(duration)
                 this.audioList.push(item)
