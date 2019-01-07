@@ -13,6 +13,7 @@
 			<nav-bar :title="title" :config="navBarConfig"></nav-bar>
 			<div class="calendar-section">
 				<mini-calendar :data="fcEvents" @dayclick="dayClick"></mini-calendar>
+				<p>当前点击日期：{{curDate}}</p>
 			</div>
     </div>
 		<script src="../../../lib/require/require.min.js"></script>

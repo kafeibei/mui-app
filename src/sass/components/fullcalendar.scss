@@ -42,6 +42,8 @@
         }
         &.today {
           background-color: transparent;
+        }
+        &.cur {
           .day-number {
             background-color: $primary;
             box-shadow: 0 0 px2rem(8px) 0 rgba(0,0,0,0.10), 0 px2rem(8px) px2rem(8px) 0 rgba(255,99,118,0.20);

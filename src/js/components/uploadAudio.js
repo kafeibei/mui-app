@@ -140,6 +140,9 @@ define(['vue', 'components/record', 'utils/audio', 'utils/muiview', 'utils/utils
           }
         },
         playAudio (item, index) {
+          if (!item.loaded) {
+            return false
+          }
           if (this.playInfo.on === 1 && index === this.playInfo.index) {
             audio.stop((code) => {
               if (code > 0) {

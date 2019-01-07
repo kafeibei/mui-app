@@ -21,12 +21,13 @@ require(['vue', 'components/navBar', 'components/miniCalendar', 'utils/utils', '
             start: '2018-12-24',
             end: '2018-12-25'
           }
-        ]
+        ],
+        curDate: ''
       }
     },
     methods: {
-      dayClick (day, event) {
-        console.log('ayya', day, event)
+      dayClick (date) {
+        this.curDate = date
       }
     }
   })
