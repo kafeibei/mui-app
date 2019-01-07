@@ -66,5 +66,9 @@ define({
   calendar: { // 日历选择
     url: '/dist/pages/advanced/calendar.html',
     id: 'advanced-calendar'
+  },
+  address: { // 地址选择
+    url: '/dist/pages/advanced/address.html',
+    id: 'advanced-address'
   }
 })

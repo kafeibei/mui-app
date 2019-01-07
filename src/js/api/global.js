@@ -1,6 +1,7 @@
 define(['config/config', 'api/index'], (globalConfig, ajaxApi) => {
   var apiConfig = {
-    mockLocation: '../../json/location.json'
+    mockLocation: '../../json/location.json',
+    mockAddress: '../../json/address.json',
   }
   var api = {}
   api.pageConfig = (url) => {
@@ -8,6 +9,9 @@ define(['config/config', 'api/index'], (globalConfig, ajaxApi) => {
   }
   api.locationConfig = (config) => {
     return api.pageConfig(apiConfig.mockLocation)
+  }
+  api.addressConfig = (config) => {
+    return api.pageConfig(apiConfig.mockAddress)
   }
   return api
 })
