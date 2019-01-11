@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>图表统计</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../../css/global/global.css?v=$VERSION" />
+    <link rel="stylesheet" href="../../css/advanced/echarts.css?v=$VERSION" />
+	</head>
+	<body>
+    <div id="page-container" class="page-container page-navbar advanced-echarts" v-cloak>
+			<nav-bar :title="title" :config="navBarConfig"></nav-bar>
+			<div class="echarts-section">
+        <div class="echarts-type">
+          <h3 class="echarts-title">饼图示例</h3>
+          <pie-echarts id="pieEcharts" :data="pieEchartsData" :config="{
+            name: '饼图示例'
+          }"></pie-echarts>
+        </div>
+        <div class="echarts-type">
+          <h3 class="echarts-title">柱图示例</h3>
+          <bar-echarts id="barEcharts" :data="barEchartsData" :config="{
+            name: '柱图示例'
+          }"></bar-echarts>
+        </div>
+        <div class="echarts-type">
+          <h3 class="echarts-title">折线示例</h3>
+          <line-echarts id="lineEcharts" :data="barEchartsData" :config="{
+            name: '折线示例'
+          }"></line-echarts>
+        </div>
+			</div>
+    </div>
+		<script src="../../../lib/require/require.min.js"></script>
+		<script src="../../js/global/main.js?v=$VERSION"></script>
+		<script src="../../js/advanced/echarts.js?v=$VERSION"></script>
+	</body>
+</html>

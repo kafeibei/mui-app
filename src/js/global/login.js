@@ -7,7 +7,7 @@ require(['vue', 'md5', 'api/login', 'config/router', 'config/config', 'config/us
           loginName: '11101002',
           password: ''
         },
-        password: '666666',
+        password: '123456',
         formLoading: false,
         formConfig: {
           type: 'password',

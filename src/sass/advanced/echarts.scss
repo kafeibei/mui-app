@@ -1,0 +1,14 @@
+@import "../global/var.scss";
+
+.advanced-echarts {
+  .echarts-type {
+    margin: px2rem(20px) 0;
+    background-color: #fff;
+  }
+  .echarts-title {
+    padding: px2rem(40px) 0;
+    font-weight: normal;
+    font-size: px2rem(32px);
+    text-align: center;
+  }
+}

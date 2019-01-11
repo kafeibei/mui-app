@@ -70,5 +70,9 @@ define({
   address: { // 地址选择
     url: '/dist/pages/advanced/address.html',
     id: 'advanced-address'
+  },
+  echarts: {  // 图表统计
+    url: '/dist/pages/advanced/echarts.html',
+    id: 'advanced-echarts'
   }
 })

@@ -74,11 +74,6 @@ define(() => {
       type: 'advanced'
     },
     {
-      title: '图片上传',
-      name: 'upload',
-      type: 'advanced'
-    },
-    {
       title: '分享功能',
       name: 'share',
       type: 'advanced'

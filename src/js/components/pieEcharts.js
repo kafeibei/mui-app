@@ -1,8 +1,8 @@
-define(['vue', 'echarts', 'utils/utils'], (Vue, _echarts, utils) => {
+define(['vue', 'echarts'], (Vue, _echarts) => {
   let pieEcharts = () => {
     Vue.component('pie-echarts', {
       props: ['data', 'id', 'config'],
-      template: `<div class="pie-echarts" :id="id"></div>`,
+      template: `<div class="echarts-canvas pie-echarts" :id="id"></div>`,
       data () {
         return {
           options: {
@@ -44,15 +44,7 @@ define(['vue', 'echarts', 'utils/utils'], (Vue, _echarts, utils) => {
 			    pieChart.setOption(this.echartOpts())
         },
         echartOpts () {
-          this.options.series[0].data = []
-          if (this.data && this.data[0]) {
-            this.data.forEach(item => {
-              this.options.series[0].data.push({
-                value: item.amount,
-                name: item.subjectTypeName
-              })
-            })
-          }
+          this.options.series[0].data = this.data
           // this.options.title.text = this.config.name
           return this.options
         }
