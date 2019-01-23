@@ -1,11 +1,15 @@
 define({
   login: {  // 登录
     url: '/dist/pages/global/login.html',
-    id: 'login-index'
+    id: 'global-login'
   },
   forget: {  // 忘记密码
     url: '/dist/pages/global/forget.html',
-    id: 'forget-index'
+    id: 'global-forget'
+  },
+  sharepopover: {  // 分享面板
+    url: '/dist/pages/global/share.html',
+    id: 'global-share'
   },
   home: { // 首页
     url: '/dist/pages/home/index.html',
@@ -74,5 +78,9 @@ define({
   echarts: {  // 图表统计
     url: '/dist/pages/advanced/echarts.html',
     id: 'advanced-echarts'
+  },
+  share: {  // 分享功能
+    url: '/dist/pages/advanced/share.html',
+    id: 'advanced-share'
   }
 })

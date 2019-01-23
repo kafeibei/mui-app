@@ -28,7 +28,7 @@ gulp.task('serve', ['sass'], function() {
             });
         },
         open: 'external',
-        host: 'app_new.seendio.com',
+        host: 'app_new.hjx.com',
         ui: false,
         index: 'index.html',
         logConnections: true,

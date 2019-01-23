@@ -14,13 +14,10 @@ require(['vue', 'components/navBar', 'components/uploadVideo', 'utils/utils', 'u
         },
         videoList: [
           {
-            src: 'http://hwcsp.cn:7089/api/file/contract/1545642119434.mov'
-          },
-          {
             src: 'http://vjs.zencdn.net/v/oceans.mp4'
           },
           {
-            src: 'http://hwcsp.cn:7089/api/file/contract/1545639131345.mov'
+            src: 'http://hwcsp.cn:7089/files/1547608280867.mp4'
           }
         ]
       }

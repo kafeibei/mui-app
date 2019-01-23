@@ -18,6 +18,9 @@ require(['vue', 'components/navBar', 'components/uploadAudio', 'utils/utils', 'u
           },
           {
             src: 'http://demo.dcloud.net.cn/test/audio/apple.mp3'
+          },
+          {
+            src: 'http://hwcsp.cn:7089/files/1547566535525.wav'
           }
         ]
       }

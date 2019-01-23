@@ -77,6 +77,16 @@ define(() => {
       title: '分享功能',
       name: 'share',
       type: 'advanced'
+    },
+    {
+      title: '支付',
+      name: 'payment',
+      type: 'advanced'
+    },
+    {
+      title: '消息推送',
+      name: 'push',
+      type: 'advanced'
     }
   ]
 })

@@ -116,6 +116,8 @@ define(['utils/muiview', 'utils/muiajax', 'utils/storage', 'utils/utils'], (muiv
     })
   }
   audio.downloader = (src, cbk) => {
+    cbk(1, src)
+    return false
     if (muiview.platform() === 'android') {
       cbk(1, src)
       return false
@@ -153,16 +155,19 @@ define(['utils/muiview', 'utils/muiajax', 'utils/storage', 'utils/utils'], (muiv
       audio.downloader(src, (code, local) => {
         if (code > 0) {
           audioObj = audio.audioObj = plus.audio.createPlayer(local)
+          console.log('local', local)
           let duration = audioObj.getDuration()
+          console.log('duration-1', duration)
           if (isNaN(duration)) {
             setTimeout(() => {
               duration = audioObj.getDuration()
+              console.log('duration-2', duration)
               if (isNaN(duration)) {
                 cbk && cbk(-1, 'h5+')
               } else {
                 cbk && cbk(1, parseInt(duration))
               }
-            }, 800)
+            }, 1800)
           } else {
             cbk && cbk(1, parseInt(duration))
           }

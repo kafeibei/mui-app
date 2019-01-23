@@ -1,0 +1,49 @@
+@import "var.scss";
+
+body {
+  background-color: transparent!important;
+}
+
+.sharePop {
+  padding: px2rem(60px) 0 px2rem(20px);
+  .share-item {
+    margin-right: px2rem(30px);
+    color: $textConfig;
+    text-align: center;
+    font-size: px2rem(24px);
+  }
+  .icon {
+    width: px2rem(112px);
+    height: px2rem(112px);
+    background:no-repeat center top transparent;
+    @include img-retina('../../assets/share/share_icon.png', '../../assets/share/share_icon@2x.png', px2rem(120px), px2rem(640px));
+  }
+  .icon-qq {
+    background-position: center px2rem(-260px);
+  }
+  .icon-weixin-WXSceneSession {
+    background-position: center px2rem(-20px);
+  }
+  .icon-weixin-WXSceneTimeline {
+    background-position: center px2rem(-138px);
+  }
+  .icon-copy {
+    background-position: center px2rem(-376px);
+  }
+  .icon-qrcode {
+    background-position: center px2rem(-496px);
+  }
+  .mui-table-view {
+    text-align: center;
+    color: $textContent;
+    font-size: px2rem(30px);
+  }
+  .canvasArea {
+    width: px2rem(240px);
+    height: px2rem(240px);
+    margin: px2rem(40px) auto;
+    border: px2rem(2px) solid $borderCellColor;
+    padding: px2rem(20px);
+    background-color: #f5f5f5;
+  }
+}

@@ -15,7 +15,7 @@ require(['vue', 'components/banner', 'utils/muiview', 'utils/storage', 'config/r
       }
     },
     created () {
-      // muiview.openWebview(defineRouter.audiochoose)
+      // muiview.openWebview(defineRouter.share)
       // return false
       this.initGuide()
       let showGuide = storage.get('showGuide')

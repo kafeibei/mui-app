@@ -38,17 +38,39 @@
         "Maps": {},
         "Speech": {
             "description": "管理语音识别插件"
-        },"VideoPlayer":{},"LivePusher":{}
+        },"VideoPlayer":{},"LivePusher":{},"Share":{}
     },
     "plus": {
         "splashscreen": {
             "autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
-            "waiting": true/*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
+            "waiting": false,/*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
+            "delay": 0
         },
         "popGesture": "close",/*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
         "runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
         "signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
-        "distribute": {"plugins":{"maps":{"baidu":{"appkey_ios":"sY5m7nAhFgjAPpAydgjqoS5OjDGt1ghR","appkey_android":"sY5m7nAhFgjAPpAydgjqoS5OjDGt1ghR","appkey":"","description":""}}},
+        "distribute": {
+          "plugins": {
+            "maps": {
+              "baidu": {
+                "appkey_ios":"sY5m7nAhFgjAPpAydgjqoS5OjDGt1ghR",
+                "appkey_android":"sY5m7nAhFgjAPpAydgjqoS5OjDGt1ghR",
+                "appkey":"",
+                "description":""
+                }
+              }
+            },
+            "share": {
+    					"weixin": {
+    						"appid": "wxe0f52abef9f8f22a",
+    						"appsecret": "acd8d0f7aed4e82a1d607ae21e55b1e8",
+    						"description": "可选，微信分享"
+    					},
+    					"qq": {
+    						"appid": "1106386937",
+    						"description": "QQ分享"
+    					}
+    				},
             "apple": {
                 "appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
                 "mobileprovision": "",/*iOS应用打包配置文件*/
