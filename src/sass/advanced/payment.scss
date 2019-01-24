@@ -1,0 +1,40 @@
+@import "../global/var.scss";
+@import "../global/components/hdpay.scss";
+
+.advanced-payment {
+  .pay-title {
+    line-height: px2rem(54px);
+    margin: px2rem(20px) px2rem(14px) px2rem(10px);
+  }
+  .pay-type {
+    padding: px2rem(36px) 0;
+    background-color: #fff;
+    .iconfont {
+      font-size: px2rem(36px);
+    }
+  }
+  .pay-item {
+    text-align: center;
+  }
+  .pay-icon {
+    display: inline-block;
+    width: px2rem(60px);
+    height: px2rem(60px);
+  }
+  .icon-pay_alih5pay, .icon-pay_alipay {
+    @include img-retina3('../../assets/payment/pay_alipay.png', '../../assets/payment/pay_alipay.png', '../../assets/payment/pay_alipay.png', px2rem(60px), px2rem(60px));
+  }
+  .icon-pay_wxh5pay, .icon-pay_wxpay {
+    @include img-retina3('../../assets/payment/pay_wxpay.png', '../../assets/payment/pay_wxpay.png', '../../assets/payment/pay_wxpay.png', px2rem(60px), px2rem(55px));
+  }
+  .icon-pay_hdpay {
+    @include img-retina3('../../assets/payment/pay_hdpay.png', '../../assets/payment/pay_hdpay.png', '../../assets/payment/pay_hdpay.png', px2rem(60px), px2rem(60px));
+  }
+  .icon-pay_offline {
+    @include img-retina3('../../assets/payment/pay_offline.png', '../../assets/payment/pay_offline.png', '../../assets/payment/pay_offline.png', px2rem(60px), px2rem(60px));
+  }
+  .label {
+    display: block;
+    color: $textConfig;
+  }
+}

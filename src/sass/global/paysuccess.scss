@@ -1,0 +1,46 @@
+@import "../global/var.scss";
+
+.global-paysuccess {
+  .pay-area {
+    background-color: #fff;
+    margin: px2rem(18px) 0 px2rem(30px);
+    padding: px2rem(40px) px2rem(56px) px2rem(10px);
+    text-align: center;
+  }
+  .icon-pay_successful, .icon-goods_close {
+    display: inline-block;
+    width: px2rem(114px);
+    height: px2rem(114px);
+    line-height: px2rem(114px);
+    font-size: px2rem(114px);
+  }
+  .icon-pay_successful {
+    @include img-retina3('../../assets/payment/pay_success.png', '../../assets/payment/pay_success.png', '../../assets/payment/pay_success.png', px2rem(110px), px2rem(110px));
+  }
+  .icon-goods_close {
+    @include img-retina3('../../assets/payment/pay_error.png', '../../assets/payment/pay_error.png', '../../assets/payment/pay_error.png', px2rem(110px), px2rem(110px));
+  }
+  .info {
+    font-size: px2rem(32px);
+    line-height: px2rem(60px);
+    margin-bottom: px2rem(30px);
+  }
+  .order-info {
+    color: $textContent;
+    font-size: px2rem(24px);
+    text-align: left;
+  }
+  .tips {
+    padding: px2rem(32px) px2rem(54px) px2rem(16px);
+    margin: px2rem(20px) px2rem(-56px) 0;
+    border-top: px2rem(2px) solid $borderColor;
+    font-size: px2rem(20px);
+    color: $textConfig;
+    text-align: left;
+  }
+  .order-detail {
+    .fenge:last-of-type {
+      display: none;
+    }
+  }
+}

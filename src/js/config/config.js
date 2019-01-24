@@ -12,8 +12,8 @@ define(['utils/env'], (getEnv) => {
     },
     mock: {
       upload: 0,
-      login: 0,
-      register: 0
+      login: 1,
+      register: 1
     }
   }
   let getConfig = (key) => {

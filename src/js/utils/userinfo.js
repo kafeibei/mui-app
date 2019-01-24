@@ -5,7 +5,7 @@ define(['utils/storage'], (storage) => {
     if (key) {
       return userInfo[key] || ''
     }
-    return userInfo || ''
+    return userInfo || {}
   }
 
   userinfo.setUserInfo = (data) => {

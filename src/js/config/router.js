@@ -11,6 +11,14 @@ define({
     url: '/dist/pages/global/share.html',
     id: 'global-share'
   },
+  payskip: {  // 支付跳转页
+    url: '/dist/pages/global/payskip.html',
+    id: 'global-payskip'
+  },
+  paysuccess: {  // 支付成功页
+    url: '/dist/pages/global/paysuccess.html',
+    id: 'global-paysuccess'
+  },
   home: { // 首页
     url: '/dist/pages/home/index.html',
     id: 'home-index'
@@ -82,5 +90,9 @@ define({
   share: {  // 分享功能
     url: '/dist/pages/advanced/share.html',
     id: 'advanced-share'
+  },
+  payment: {  // 支付功能
+    url: '/dist/pages/advanced/payment.html',
+    id: 'advanced-payment'
   }
 })

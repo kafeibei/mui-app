@@ -1,5 +1,5 @@
 define(['api/index'], (ajaxApi) => {
-  var apiConfig = {}
-  var api = {}
+  let apiConfig = {}
+  let api = {}
   return api
 })

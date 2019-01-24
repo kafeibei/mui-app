@@ -1,4 +1,4 @@
-define(['mui', 'utils/utils', 'utils/storage'], (mui, utils, storage) => {
+define(['mui', 'utils/utils', 'utils/storage', 'config/payRequest'], (mui, utils, storage, payRequest) => {
   let muiview = {}
   muiview.alert = (params) => {
     if (typeof params === 'string') {
@@ -169,6 +169,20 @@ define(['mui', 'utils/utils', 'utils/storage'], (mui, utils, storage) => {
       mui.plusReady(() => {
         initRefresh()
       })
+    }
+  }
+  muiview.request = (params, data, cbk) => {
+    if (!muiview.osplus()) {
+      params.success && params.success(payRequest[params.channel.id])
+      cbk && cbk(1)
+    } else {
+       plus.payment.request(params.channel, data, (res) => {
+         params.success && params.success(res)
+         cbk && cbk(1)
+       }, (rej) => {
+         params.fail && params.fail(rej)
+         cbk && cbk(-1)
+       })
     }
   }
   muiview.loading = {

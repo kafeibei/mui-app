@@ -12,7 +12,7 @@ define(['mui', 'utils/muiview', 'config/shareServices', 'utils/utils'], (mui, mu
     function servicesBack (services) {
       let shareServices = []
       if (services && services[0]) {
-        let filterService = ['weixin']
+        let filterService = ['qq', 'weixin']
         services.forEach(item => {
           if (filterService.indexOf(item.id) > -1) {
             if (item.id === 'weixin') {

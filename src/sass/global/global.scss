@@ -141,8 +141,8 @@ body a, .btntext {
 .show-loading {
   min-height: px2rem(400px);
   text-align: center;
-  font-size: px2rem(28px);
-  color: #9DA7AC;
+  font-size: px2rem(30px);
+  color: $textConfig;
   padding-top: px2rem(60px);
 }
 .has-empty {
@@ -160,7 +160,7 @@ body a, .btntext {
   background-color: #fff;
   p {
     font-size: px2rem(30px);
-    color: #9DA7AC;
+    color: $textConfig;
   }
 }
 
@@ -321,22 +321,12 @@ body a, .btntext {
   width: 100%;
   height: 100vh;
 }
-.popoverPop {
+.popover-pop {
   position: fixed;
   width: 100%;
   bottom: 0;
   left: 0;
   background-color: #fff;
-  .popover-header {
-    padding: 0 px2rem(20px);
-    border-bottom: px2rem(1px) solid #ccc;
-    line-height: px2rem(44px);
-    font-size: px2rem(16px);
-    .btntext {
-      float: right;
-      margin-left: px2rem(10px);
-    }
-  }
 }
 
 .btn-disabled {

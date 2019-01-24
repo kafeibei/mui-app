@@ -11,7 +11,7 @@
 	</head>
 	<body>
     <div id="page-container" class="page-container page-popover page-share" @tap="closeMask($event)" v-cloak>
-      <div class="popoverPop sharePop">
+      <div class="popover-pop share-pop">
         <ul class="share-list hg-flex flex-wrap">
           <li class="share-item" v-for="item in services" :key="item.key" @tap="doItem(item)">
 						<div class="icon" :class="'icon-' + item.key"></div>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>支付页</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../../css/global/global.css?v=$VERSION" />
+    <link rel="stylesheet" href="../../css/advanced/payment.css?v=$VERSION" />
+	</head>
+	<body>
+    <div id="page-container" class="page-container page-navbar advanced-payment" v-cloak>
+			<nav-bar :title="title" :config="navBarConfig"></nav-bar>
+			<div class="payment-section">
+        <div class="pay-style">
+          <p class="pay-title">请选择支付方式：</p>
+          <ul class="pay-type hg-flex">
+            <li class="flex-one pay-item" @click="goPay(item)" v-for="item in channels" :key="item.id">
+              <span class="pay-icon iconfont" :class="'icon-pay_' + item.id"></span>
+              <label class="label">{{item.title}}</label>
+            </li>
+          </ul>
+        </div>
+			</div>
+			<div :id="hdpayPopover.id" class="mui-popover mui-popover-action mui-popover-bottom">
+        <hdpay-sheet :options="hdpayPopover" @finish="hdpayFinish" :data="{
+					ordercode: cid
+				}"></hdpay-sheet>
+      </div>
+    </div>
+		<script src="../../../lib/require/require.min.js"></script>
+		<script src="../../js/global/main.js?v=$VERSION"></script>
+		<script src="../../js/advanced/payment.js?v=$VERSION"></script>
+	</body>
+</html>
