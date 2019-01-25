@@ -1,0 +1,24 @@
+@import "../global/var.scss";
+
+.mui-range {
+  .mui-input-range {
+    padding-right: 0!important;
+    input[type=range] {
+      background-color: #e1e1e1;
+      height: px2rem(8px);
+      &::-webkit-slider-thumb {
+        width: px2rem(40px);
+        height: px2rem(40px);
+        border-radius: 50%;
+        background: $primary;
+        border: px2rem(4px) solid #fff;
+        box-shadow: 0 0 0 px2rem(6px) $primary;
+      }
+    }
+  }
+  .number-tips {
+    color: $textConfig;
+    display: inline-block;
+    padding: 0 px2rem(20px);
+  }
+}

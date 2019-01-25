@@ -16,10 +16,27 @@
 				<div class="form-type form-numbox">
           <h3 class="form-title">数字输入框</h3>
           <div class="form-content">
-            <widget-numbox :config="numboxConfig" :data="quantity" @finish="finishNumbox"></widget-numbox>
-						<p>当前值为：{{quantity}}</p>
+            <widget-numbox :config="numboxConfig" :data="quantity.numbox" @finish="finishNumbox"></widget-numbox>
+						<p>当前值为：{{quantity.numbox}}</p>
           </div>
         </div>
+
+				<div class="form-type form-range">
+          <h3 class="form-title">滑块</h3>
+          <div class="form-content">
+            <widget-range :config="numboxConfig" :data="quantity.range" @finish="finishRange"></widget-range>
+						<p>当前值为：{{quantity.range}}</p>
+          </div>
+        </div>
+
+				<div class="form-type form-range">
+          <h3 class="form-title">进度条</h3>
+          <div class="form-content">
+            <widget-progress :config="progressConfig" :data="quantity.progress" @finish="finishProgress"></widget-progress>
+						<p>当前值为：{{quantity.progress}}</p>
+          </div>
+        </div>
+
 			</div>
     </div>
 		<script src="../../../lib/require/require.min.js"></script>

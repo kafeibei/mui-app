@@ -1,0 +1,12 @@
+@import "../global/var.scss";
+
+.mui-progress {
+  margin: 0 px2rem(40px);
+  .mui-progressbar {
+    height: px2rem(8px);
+    background: #e1e1e1;
+    span {
+      background: $primary;
+    }
+  }
+}

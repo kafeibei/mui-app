@@ -1,4 +1,4 @@
-define(['vue', 'previewimage', 'utils/upload', 'utils/muiview'], (Vue, previewimage, upload, muiview) => {
+define(['vue', 'utils/muiview'], (Vue, muiview) => {
   let widgetNumbox = () => {
     Vue.component('widget-numbox', {
       props: {
