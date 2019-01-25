@@ -1,0 +1,47 @@
+@import "../global/var.scss";
+
+// 数字输入框
+.page-container .mui-numbox {
+  width: px2rem(240px);
+  height: px2rem(64px);
+  line-height: px2rem(50px);
+  padding: 0 px2rem(64px);
+  border-color: #eee;
+  background-color: #fff;
+  border-radius: 0;
+  .mui-btn {
+    width: px2rem(64px);
+    height: px2rem(64px);
+    line-height: px2rem(64px);
+    background-color: #eee;
+    border-radius: 0;
+    font-size: 0;
+    &:after {
+      position: absolute;
+      width: px2rem(20px);
+      height: px2rem(2px);
+      left: 50%;
+      top: 50%;
+      background-color: #333;
+      transform: translate(-50%, -50%);
+      content: '';
+    }
+    &.mui-numbox-btn-plus:before {
+      position: absolute;
+      width: px2rem(2px);
+      height: px2rem(20px);
+      left: 50%;
+      top: 50%;
+      background-color: #333;
+      transform: translate(-50%, -50%);
+      content: '';
+    }
+    &[disabled]:after {
+      background-color: #999;
+    }
+  }
+  .mui-numbox-input {
+    border: none!important;
+    font-size: px2rem(24px);
+  }
+}

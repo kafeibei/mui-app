@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>表单元素</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../../css/global/global.css?v=$VERSION" />
+    <link rel="stylesheet" href="../../css/basic/form.css?v=$VERSION" />
+	</head>
+	<body>
+    <div id="page-container" class="page-container page-navbar basic-form" v-cloak>
+			<nav-bar :title="title" :config="navBarConfig"></nav-bar>
+			<div class="form-section">
+				<div class="form-type form-numbox">
+          <h3 class="form-title">数字输入框</h3>
+          <div class="form-content">
+            <widget-numbox :config="numboxConfig" :data="quantity" @finish="finishNumbox"></widget-numbox>
+						<p>当前值为：{{quantity}}</p>
+          </div>
+        </div>
+			</div>
+    </div>
+		<script src="../../../lib/require/require.min.js"></script>
+		<script src="../../js/global/main.js?v=$VERSION"></script>
+		<script src="../../js/basic/form.js?v=$VERSION"></script>
+	</body>
+</html>

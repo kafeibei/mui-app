@@ -25,6 +25,11 @@ define(() => {
       type: 'basic'
     },
     {
+      title: '表单元素',
+      name: 'form',
+      type: 'basic'
+    },
+    {
       title: '常用功能',
       name: 'divider'
     },

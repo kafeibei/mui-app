@@ -1,0 +1,16 @@
+@import "../global/var.scss";
+
+.basic-form {
+  .form-type {
+    margin: px2rem(20px) 0;
+    padding: px2rem(20px) 0;
+    text-align: center;
+    background-color: #fff;
+  }
+  .form-title {
+    padding: px2rem(20px) 0;
+    font-weight: normal;
+    font-size: px2rem(32px);
+    text-align: center;
+  }
+}

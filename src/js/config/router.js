@@ -47,6 +47,10 @@ define({
     url: '/dist/pages/basic/popover.html',
     id: 'basic-popover'
   },
+  form: { // 表单元素
+    url: '/dist/pages/basic/form.html',
+    id: 'basic-form'
+  },
   audio: { // 语音播放
     url: '/dist/pages/advanced/audio.html',
     id: 'advanced-audio'
