@@ -1,8 +1,9 @@
-require(['vue', 'components/navBar', 'components/numbox', 'components/range', 'components/progress', 'utils/muiview'], (Vue, navBar, widgetNumbox, widgetRange, widgetProgress, muiview) => {
+require(['vue', 'components/navBar', 'components/numbox', 'components/range', 'components/progress', 'components/switches', 'utils/muiview'], (Vue, navBar, widgetNumbox, widgetRange, widgetProgress, widgetSwitches, muiview) => {
   navBar()
   widgetNumbox()
   widgetRange()
   widgetProgress()
+  widgetSwitches()
   var ddVue = new Vue({
     el: '#page-container',
     data () {
@@ -25,7 +26,8 @@ require(['vue', 'components/navBar', 'components/numbox', 'components/range', 'c
         quantity: {
           numbox: 30,
           range: 40,
-          progress: 20
+          progress: 20,
+          switches: true
         }
       }
     },
@@ -37,7 +39,10 @@ require(['vue', 'components/navBar', 'components/numbox', 'components/range', 'c
         this.quantity.range = quantity
       },
       finishProgress (quantity, config) {
-        this.quantity.range = quantity
+        this.quantity.progress = quantity
+      },
+      finishSwitches (quantity, config) {
+        this.quantity.switches = quantity
       }
     }
   })

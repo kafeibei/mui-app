@@ -1,0 +1,21 @@
+@import "../global/var.scss";
+
+.mui-switches {
+  margin: 0 auto;
+  &.mui-switch {
+    width: px2rem(92px);
+    height: px2rem(48px);
+    border-width: px2rem(2px);
+    &.mui-active {
+      background-color: $primary;
+      border-color: $primary;
+      .mui-switch-handle {
+        transform: translate(px2rem(48px),0);
+      }
+    }
+    .mui-switch-handle {
+      width: px2rem(48px);
+      height: px2rem(48px);
+    }
+  }
+}
