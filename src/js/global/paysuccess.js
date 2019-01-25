@@ -8,7 +8,7 @@ require(['vue', 'components/navBar', 'components/widgetLoading', 'config/router'
         title: '收银台',
         navBarConfig: {
           right: {
-            title: '回到首页',
+            title: '返回首页',
             action: this.goRouter
           }
         },

@@ -176,13 +176,14 @@ define(['mui', 'utils/utils', 'utils/storage', 'config/payRequest'], (mui, utils
       params.success && params.success(payRequest[params.channel.id])
       cbk && cbk(1)
     } else {
-       plus.payment.request(params.channel, data, (res) => {
-         params.success && params.success(res)
-         cbk && cbk(1)
-       }, (rej) => {
-         params.fail && params.fail(rej)
-         cbk && cbk(-1)
-       })
+      plus.payment.request(params.channel, data, (res) => {
+        params.success && params.success(res)
+        cbk && cbk(1)
+      }, (rej) => {
+        console.log('fail')
+       params.fail && params.fail(rej)
+       cbk && cbk(-1)
+     })
     }
   }
   muiview.loading = {

@@ -7,16 +7,16 @@ require(['vue', 'components/banner', 'utils/muiview', 'utils/storage', 'config/r
         indicate: true,
         config: {
           loop: false,
-          indicator: true,
           custom: true,
-          interval: 0
+          interval: 0,
+          indicator: {
+            direction: 'center'
+          }
         },
         data: []
       }
     },
     created () {
-      // muiview.openWebview(defineRouter.share)
-      // return false
       this.initGuide()
       let showGuide = storage.get('showGuide')
       if (showGuide) {

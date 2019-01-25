@@ -71,6 +71,10 @@ define({
     url: '/dist/pages/advanced/image.html',
     id: 'advanced-image'
   },
+  banner: { // 图片轮播
+    url: '/dist/pages/advanced/banner.html',
+    id: 'advanced-banner'
+  },
   map: { // 地图组件
     url: '/dist/pages/advanced/map.html',
     id: 'advanced-map'

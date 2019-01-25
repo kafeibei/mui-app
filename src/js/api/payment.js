@@ -23,7 +23,9 @@ define(['api/index'], (ajaxApi) => {
   api.alipay = (config) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve()
+        resolve({
+          data: 'alipay_sdk=alipay-sdk-java-3.0.52.ALL&app_id=2018012302049288&biz_content={"body":"","out_trade_no":"20180910140958042454016","product_code":"QUICK_WAP_PAY","subject":"移动端订单","timeout_express":"10m","total_amount":"0.0175"}&format=json&method=alipay.trade.wap.pay&sign_type=RSA2&timestamp=2018-09-10+14:09:58&version=1.0'
+        })
       }, 300)
     })
   }

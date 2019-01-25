@@ -54,6 +54,11 @@ define(() => {
       type: 'advanced'
     },
     {
+      title: '图片轮播',
+      name: 'banner',
+      type: 'advanced'
+    },
+    {
       title: '地图功能',
       name: 'map',
       type: 'advanced'

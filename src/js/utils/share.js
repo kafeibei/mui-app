@@ -93,7 +93,7 @@ define(['mui', 'utils/muiview', 'config/shareServices', 'utils/utils'], (mui, mu
                   share.weixinShare(convertPic, params.title)
                 }
               } else {
-                jumaoe.toast({
+                muiview.toast({
                   message: '下载图片失败'
                 })
               }

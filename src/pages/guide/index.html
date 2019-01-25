@@ -11,7 +11,7 @@
 	</head>
 	<body>
     <div id="page-container" class="page-container page-guide" v-cloak>
-			<widget-banner :config="config" :data="data" v-if="indicate">
+			<widget-banner :config="config" :data="data">
         <div v-for="(item, index) in data" :key="index" :slot="'banner_' + index">
 					<div class="guide-skip" @click="goLogin" v-if="index < 2">跳过<span class="iconfont icon-arrow_right"></span></div>
 					<div class="img-box" :class="'img-' + item.name"></div>
