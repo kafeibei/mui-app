@@ -34,6 +34,11 @@ define(() => {
       name: 'divider'
     },
     {
+      title: '下拉刷新和上拉加载',
+      name: 'pullrefresh',
+      type: 'advanced'
+    },
+    {
       title: '语音播放',
       name: 'audio',
       type: 'advanced'

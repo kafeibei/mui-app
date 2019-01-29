@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>下拉刷新和上拉加载</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../../css/global/global.css?v=$VERSION" />
+    <link rel="stylesheet" href="../../css/advanced/pullrefresh.css?v=$VERSION" />
+	</head>
+	<body>
+    <div id="subpage-container" class="page-container advanced-subpullrefresh" v-cloak>
+			<div id="pullrefresh" class="mmui-scroll-wrapper">
+        <div class="mui-scroll">
+          <widget-loading :finish="finish">
+            <ul class="mui-table-view">
+              <li class="mui-table-view-cell" v-for="item in data" :key="item.name">{{item.title}}</li>
+            </ul>
+          </widget-loading>
+        </div>
+			</div>
+    </div>
+		<script src="../../../lib/require/require.min.js"></script>
+		<script src="../../js/global/main.js?v=$VERSION"></script>
+		<script src="../../js/advanced/subpullrefresh.js?v=$VERSION"></script>
+	</body>
+</html>

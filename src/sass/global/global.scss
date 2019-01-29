@@ -295,23 +295,14 @@ body a, .btntext {
 // 返回顶部
 .back-top {
   position: fixed;
-  bottom: px2rem(80px);
-  right: px2rem(9.5px);
-  width: px2rem(25px);
-  height: px2rem(25px);
-  line-height: px2rem(25px);
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: px2rem(30px);
-  -webkit-border-radius: px2rem(30px);
-  -moz-border-radius: px2rem(30px);
-  -ms-border-radius: px2rem(30px);
-  -o-border-radius: px2rem(30px);
-  text-align: center;
-  display: none;
+  bottom: px2rem(160px);
+  right: px2rem(56px);
+  width: px2rem(60px);
+  height: px2rem(60px);
+  opacity: 0.8;
+  @include img-retina3('../../assets/global/back_top.png', '../../assets/global/back_top.png', '../../assets/global/back_top.png', px2rem(60px), px2rem(60px));
   z-index: 99;
-  i {
-    color: #fff;
-  }
+  display: none;
 }
 .isShow{
   display: block;

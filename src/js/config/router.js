@@ -51,6 +51,14 @@ define({
     url: '/dist/pages/basic/form.html',
     id: 'basic-form'
   },
+  pullrefresh: { // 下拉刷新和上拉加载
+    url: '/dist/pages/advanced/pullrefresh.html',
+    id: 'advanced-pullrefresh'
+  },
+  subpullrefresh: { // 下拉刷新和上拉加载子页面
+    url: '/dist/pages/advanced/subpullrefresh.html',
+    id: 'advanced-subpullrefresh'
+  },
   audio: { // 语音播放
     url: '/dist/pages/advanced/audio.html',
     id: 'advanced-audio'

@@ -1,6 +1,7 @@
-require(['vue', 'mui', 'components/bottomBar', 'components/navBar', 'config/function', 'config/router', 'utils/muiview'], (Vue, mui, bottomBar, navBar, functions, defineRouter, muiview) => {
-  bottomBar()
+require(['vue', 'mui', 'components/bottomBar', 'components/navBar', 'components/backTop', 'config/function', 'config/router', 'utils/muiview'], (Vue, mui, bottomBar, navBar, backTop, functions, defineRouter, muiview) => {
   navBar()
+  backTop()
+  bottomBar()
   var ddVue = new Vue({
     el: '#page-container',
     data () {
