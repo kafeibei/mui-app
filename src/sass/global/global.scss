@@ -345,7 +345,7 @@ body a, .btntext {
   }
 }
 
-$tab-columns : (home : home, message: message, mine: mine)!default;
+$tab-columns : (home : home, log: log, mine: mine)!default;
 @each $type, $columns in $tab-columns {
   .mui-bar-tab .mui-#{$type} {
     @include img-retina3('../../assets/global/tab_#{$columns}@1x.png', '../../assets/global/tab_#{$columns}@2x.png', '../../assets/global/tab_#{$columns}@3x.png', px2rem(48px), px2rem(48px));

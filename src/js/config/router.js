@@ -23,9 +23,9 @@ define({
     url: '/dist/pages/home/index.html',
     id: 'home-index'
   },
-  message: {  // 消息中心
-    url: '/dist/pages/message/index.html',
-    id: 'message-index'
+  log: {  // 更新日志
+    url: '/dist/pages/log/index.html',
+    id: 'log-index'
   },
   mine: { // 我的
     url: '/dist/pages/mine/index.html',

@@ -209,14 +209,10 @@
     }
     .mui-tab-item  {
       height: 100%;
-      padding: px2rem(12px) 0;
-    }
-    .iconfont {
-      font-size: px2rem(38px);
-      color: $textConfig;
+      padding: px2rem(14px) 0 px2rem(10px);
     }
     .mui-tab-label {
-      padding-top: px2rem(48px);
+      padding-top: px2rem(54px);
       line-height: px2rem(36px);
       font-size: px2rem(24px);
       color: #9DA7AC;

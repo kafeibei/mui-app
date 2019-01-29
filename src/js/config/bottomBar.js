@@ -5,8 +5,8 @@ define(() => {
       name: 'home'
     },
     {
-      title: '消息中心',
-      name: 'message'
+      title: '更新日志',
+      name: 'log'
     },
     {
       title: '我的',
