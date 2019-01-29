@@ -377,5 +377,16 @@ define(['mui', 'utils/utils', 'utils/storage', 'config/payRequest'], (mui, utils
       plus.navigator.setFullscreen(type)
     }
   }
+  muiview.getVersion = (cbk) => {
+    if (!muiview.osplus()) {
+      cbk && cbk(-1)
+    } else {
+      mui.plusReady(() => {
+				plus.runtime.getProperty(plus.runtime.appid, (res) => {
+					cbk && cbk(1, res.version)
+				})
+			})
+    }
+  }
   return muiview
 })

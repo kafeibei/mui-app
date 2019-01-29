@@ -23,14 +23,6 @@ define({
     url: '/dist/pages/home/index.html',
     id: 'home-index'
   },
-  log: {  // 更新日志
-    url: '/dist/pages/log/index.html',
-    id: 'log-index'
-  },
-  mine: { // 我的
-    url: '/dist/pages/mine/index.html',
-    id: 'mine-index'
-  },
   select: { // 下拉选择框
     url: '/dist/pages/basic/select.html',
     id: 'basic-select'
@@ -110,5 +102,17 @@ define({
   payment: {  // 支付功能
     url: '/dist/pages/advanced/payment.html',
     id: 'advanced-payment'
+  },
+  log: {  // 更新日志
+    url: '/dist/pages/log/index.html',
+    id: 'log-index'
+  },
+  mine: { // 我的
+    url: '/dist/pages/mine/index.html',
+    id: 'mine-index'
+  },
+  about: { // 关于我们
+    url: '/dist/pages/about/index.html',
+    id: 'about-index'
   }
 })

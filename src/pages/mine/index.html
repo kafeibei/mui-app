@@ -12,9 +12,17 @@
 	<body>
     <div id="page-container" class="page-container page-navbar page-mine" v-cloak>
       <nav-bar :title="title" :config="navBarConfig"></nav-bar>
-			<hg-message :title="title"></hg-message>
-			<div class="mui-button-row">
-				<button type="button" class="mui-btn mui-btn-primary mui-btn-full" @click="cleanStorage">清除本地存储</button>
+			<div class="mine-section">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell hg-flex" @click="goPage('about')">
+						<span class="label">关于我们</span>
+						<div class="mui-navigate-right flex-one"></div>
+					</li>
+					<li class="mui-table-view-cell hg-flex" @click="doEdit">
+						<span class="label">退出</span>
+						<div class="mui-navigate-right flex-one"></div>
+					</li>
+        </ul>
 			</div>
 			<bottom-bar active="mine"></bottom-bar>
     </div>

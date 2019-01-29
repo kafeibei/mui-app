@@ -1,0 +1,12 @@
+@import "../global/var.scss";
+
+.page-about {
+  min-height: 100vh;
+  background-color: #fff;
+  .compontent-message {
+    height: px2rem(680px);
+  }
+  .about-version {
+    text-align: center;
+  }
+}
