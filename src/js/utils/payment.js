@@ -106,7 +106,7 @@ define(['mui', 'utils/muiview', 'utils/utils', 'config/payChannel', 'api/payment
         let skipParam = {
           out_trade_no: '20180821235145455467008',
         }
-        window.location.href = window.location.origin + defineRouter.payskip.url + '?' + utils.codeParam(skipParam)
+        window.location.href = window.location.origin + utils.setpathname(defineRouter.payskip.url) + '?' + utils.codeParam(skipParam)
         return false
         let payParam = {
           orderCode: params.orderCode,

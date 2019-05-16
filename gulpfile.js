@@ -6,6 +6,14 @@ var imagemin = require('gulp-imagemin');
 var babel = require('gulp-babel');
 var watchPath = require('gulp-watch-path');
 var combiner = require('stream-combiner2');
+var gutil = require('gulp-util')
+var del = require('del')
+
+//构建工程，只在发布上线时用
+let distDir = 'dist/';
+if (gutil.env.build === true) {
+  distDir = '../kafeibei/mui-app-build/dist/'
+}
 
 //启动本地服务器，需要配置host: 127.0.0.1 app_new.hjx.com
 //另外监听scss、html文件
@@ -44,7 +52,7 @@ gulp.task('serve', ['sass'], function() {
     		.pipe(gulp.dest(paths.distDir));
     })
     gulp.watch('src/pages/**/*.html', function (event) {
-        var paths = watchPath(event, 'src/pages', 'dist/pages/')
+        var paths = watchPath(event, 'src/pages', distDir + 'pages/')
         var combined = combiner.obj([
             gulp.src(paths.srcPath),
             gulp.dest(paths.distDir)
@@ -69,23 +77,29 @@ gulp.task('sass', function() {
       browsers: ['last 2 versions'],
       cascade: false
     }))
-    .pipe(gulp.dest('dist/css'));
+    .pipe(gulp.dest(distDir + 'css'));
 });
 //本地开发时候用
 gulp.task('watch', ['serve']);
 
-//构建工程，只在发布上线时用
-var distDir = 'dist/';
 var version = +new Date();
 
 var filter = require('gulp-filter');
 var htmlfilter = filter(['src/pages/**/*.html'], {restore: true});
 
+gulp.task('clean', () => {
+  del([distDir + '/**'], {
+    force: true
+  }).then(() => {
+      console.log('项目初始化清理完成...');
+  })
+})
+
 gulp.task('distjs', () => {
   gulp.src(['src/js/**/*.js'])
   .pipe(babel())
   .pipe(uglify())
-  .pipe(gulp.dest('dist/js'))
+  .pipe(gulp.dest(distDir + 'js'))
 })
 
 gulp.task('disttemplates', () => {
@@ -98,18 +112,18 @@ gulp.task('disttemplates', () => {
   ]))
   .pipe(htmlfilter.restore)
   .pipe(htmlmin({collapseWhitespace: true}))
-  .pipe(gulp.dest('dist/pages'))
+  .pipe(gulp.dest(distDir + 'pages'))
 })
 
 gulp.task('distimage', function () {
   gulp.src('src/assets/**/*')
       .pipe(imagemin({progressive: true}))
-      .pipe(gulp.dest('dist/assets'))
+      .pipe(gulp.dest(distDir + 'assets'))
 })
 
 gulp.task('distjson', function () {
     gulp.src('src/json/*')
-    .pipe(gulp.dest('dist/json'))
+    .pipe(gulp.dest(distDir + 'json'))
 });
 
 

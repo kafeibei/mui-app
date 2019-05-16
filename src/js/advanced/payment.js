@@ -120,7 +120,7 @@ require(['vue', 'components/navBar', 'global/components/hdpayView', 'utils/utils
             out_trade_no: '20180821235145455467008',
             type: 'wxpay'
           }
-          window.location.href = window.location.origin + defineRouter.payskip.url + '?' + utils.codeParam(skipParam)
+          window.location.href = window.location.origin + utils.setpathname(defineRouter.payskip.url) + '?' + utils.codeParam(skipParam)
           return false
           let params = {
             redirect_url: encodeURIComponent(window.location.origin + defineRouter.payskip.url)

@@ -326,6 +326,7 @@
 
 // 底部面板
 .mui-popover {
+  max-width: $pageMaxWidth;
   .mui-popover-content {
     background-color: #fff;
   }

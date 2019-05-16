@@ -63,7 +63,7 @@ define(['mui', 'utils/utils', 'utils/storage', 'config/payRequest'], (mui, utils
       if (options.extras) {
         search = '?' + utils.codeParam(options.extras)
       }
-      window.top.location.href = options.url + search
+      window.top.location.href = utils.setpathname(options.url) + search
     } else {
       mui.plusReady(() => {
         let currentWebview = options.curId ? plus.webview.getWebviewById(options.curId) : plus.webview.currentWebview()
@@ -83,7 +83,7 @@ define(['mui', 'utils/utils', 'utils/storage', 'config/payRequest'], (mui, utils
     if (!muiview.osplus()) {
       let search = ''
       if (opts.extras) {
-        search = (url.indexOf('?') > -1 ? '&' : '?') + utils.codeParam(opts.extras)
+        search = (utils.setpathname(url).indexOf('?') > -1 ? '&' : '?') + utils.codeParam(opts.extras)
       }
       url += search
     }
@@ -180,9 +180,9 @@ define(['mui', 'utils/utils', 'utils/storage', 'config/payRequest'], (mui, utils
         params.success && params.success(res)
         cbk && cbk(1)
       }, (rej) => {
-        console.log('fail')
-       params.fail && params.fail(rej)
-       cbk && cbk(-1)
+        console.error('fail')
+        params.fail && params.fail(rej)
+        cbk && cbk(-1)
      })
     }
   }

@@ -52,6 +52,8 @@ require(['vue', 'components/banner', 'utils/muiview', 'utils/storage', 'config/r
       doClose () {
         this.indicate = false
         let token = userinfo.getUserInfo('token')
+        console.log('token', token)
+        return false
         if (token) {
           muiview.openWebview(defineRouter.home)
         } else {

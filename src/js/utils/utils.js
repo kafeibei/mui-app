@@ -181,5 +181,13 @@ define(['config/config', 'config/setting'], (getConfig, getSetting) => {
     return (bytes / Math.pow(k, i)).toPrecision(2) + ' ' + sizes[i]
   }
 
+  utils.setpathname = (url) => {
+    let pathname = window.location.pathname
+    if (pathname.indexOf(/dist/) === -1) {
+      return pathname + url
+    }
+    return pathname.replace(/\/dist\/.*/, url)
+  }
+
   return utils
 })
