@@ -1,11 +1,9 @@
 @import "../global/var.scss";
 
 .mui-slider {
-  min-height: px2rem(640px);
-  max-height: px2rem(960px);
-  .mui-slider-item {
-    min-height: px2rem(640px);
-    max-height: px2rem(960px);
+  height: px2rem(640px);
+  .mui-slider-item, .banner-inner {
+    height: 100%;
   }
   &.mui-custom-slider {
     max-height: inherit;

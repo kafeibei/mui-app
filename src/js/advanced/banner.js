@@ -20,16 +20,16 @@ require(['vue', 'components/navBar', 'components/banner', 'utils/utils', 'utils/
           }
         },
         data: [{
-          imgSrc: 'http://pimg.xiuzan.com/xiuzan/2017/01/20170106173210_DWbPQD',
-          title: '新春摇一摇'
+          imgSrc: 'https://kafeibei.github.io/raffle-h5/common/images/guide/shake.png',
+          title: '摇一摇'
         }, {
-          imgSrc: 'http://pimg.xiuzan.com/xiuzan/2016/11/20161110155910_X5M2Kj',
-          title: '轮盘夺宝'
+          imgSrc: 'https://kafeibei.github.io/raffle-h5/common/images/guide/slot.png',
+          title: '老虎机'
         }, {
-          imgSrc: 'http://pimg.xiuzan.com/xiuzan/2016/11/20161110155842_WmTdBd',
-          title: '跑马灯'
+          imgSrc: 'https://kafeibei.github.io/raffle-h5/common/images/guide/scratch.png',
+          title: '刮刮卡'
         }, {
-          imgSrc: 'http://xiuzan-pub.img-cn-beijing.aliyuncs.com/xiuzan/2016/8/GrTDma_dDYSJR_instant.jpg',
+          imgSrc: 'https://kafeibei.github.io/raffle-h5/common/images/guide/instant.png',
           title: '即时开奖'
         }]
       }

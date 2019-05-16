@@ -1,6 +1,16 @@
 @import "var.scss";
 @import "../components/index.scss";
 
+#subpage-container {
+  position: relative;
+}
+#pullrefresh {
+  max-width: $pageMaxWidth;
+  margin: 0 auto;
+}
+#actionSheet {
+  max-width: $pageMaxWidth;
+}
 .mui-input-group .mui-input-row {
   height: auto!important;
 }
@@ -55,6 +65,9 @@
       background-color: #e8e8e8;
       height: px2rem(2px);
       left: px2rem(28px);
+    }
+    &.item-active {
+      background-color: #eee;
     }
     .label {
       color: #4A4A4A;
@@ -159,6 +172,8 @@
 
 .mui-bar {
   &.mui-bar-nav {
+    max-width: 750px;
+    margin: 0 auto;
     height: px2rem(88px);
     line-height: px2rem(88px);
     padding: 0 px2rem(28px);
@@ -200,6 +215,8 @@
     bottom: auto;
   }
   &.mui-bottom-bar {
+    max-width: 750px;
+    margin: 0 auto;
     box-shadow: none;
     background-color: #fff;
     height: px2rem(108px);
@@ -572,7 +589,7 @@ $mui-theme : (default: #999, primary : #ff637c, warning: #F13A30)!default;
 }
 
 .mui-popup {
-  width: px2rem(540px);
+  width: px2rem(540px)!important;
   border-radius: px2rem(14px);
   .mui-popup-inner {
     border-radius: px2rem(14px) px2rem(14px) 0 0;
@@ -582,7 +599,7 @@ $mui-theme : (default: #999, primary : #ff637c, warning: #F13A30)!default;
     font-size: px2rem(36px);
     line-height: px2rem(38px);
   }
-  .mui-popup-text {
+  .mui-popup-text, .mui-popup-title+.mui-popup-text {
     margin-top: px2rem(30px);
     color: #999;
     font-size: px2rem(30px);

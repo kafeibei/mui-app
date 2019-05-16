@@ -26,7 +26,7 @@ define(['vue', 'components/record', 'utils/audio', 'utils/muiview', 'utils/utils
             <i class="el-icon-plus"></i>
           </div>
         </div>
-        <p v-if="playInfo.on !== 0">当前播放状态：{{playInfo.on > 0 ? '播放中；当前播放音频地址：' + audioList[playInfo.index].src : '已暂停'}}</p>
+        <p class="tips-status" v-if="playInfo.on !== 0">当前播放状态：{{playInfo.on > 0 ? '播放中；当前播放音频地址：' + audioList[playInfo.index].src : '已暂停'}}</p>
         <div :id="sheetPopover.id" class="mui-popover mui-popover-action mui-popover-bottom" v-if="this.sheetPopover.active">
           <record-sheet :options="sheetPopover" @finish="doFinish"></record-sheet>
         </div>

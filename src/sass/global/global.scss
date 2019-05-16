@@ -3,7 +3,7 @@
 @import "mui.scss";
 
 body {
-  background-color: #f5f5f5!important;
+  background-color: #a8a8a8!important;
   color: $textTitle!important;
   font-size: px2rem(24px)!important;
 }
@@ -13,6 +13,10 @@ body {
 }
 .page-container {
   font-size: px2rem(28px);
+  max-width: $pageMaxWidth;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  margin: 0 auto;
   p {
     font-size: px2rem(28px);
   }
@@ -290,6 +294,10 @@ body a, .btntext {
     color: #909399;
     margin: px2rem(6px) 0 px2rem(10px);
   }
+}
+.tips-status {
+  margin: px2rem(20px);
+  color: $primary;
 }
 
 // 返回顶部

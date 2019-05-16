@@ -9,7 +9,7 @@ define(['vue', 'utils/muiview', 'config/function'], (Vue, muiview, functions) =>
           <span class="btntext" @click="doConfirm">确定</span>
         </div>
         <ul class="mui-table-view">
-          <li class="mui-table-view-cell hg-flex" v-for="(item, index) in functions" :key="item" :class="{'mui-active': curActive.name === item.name}" @click="doActive(item)">{{item.title}}</li>
+          <li class="mui-table-view-cell hg-flex" v-for="(item, index) in functions" :key="item" :class="{'item-active': curActive.name === item.name}" @click="doActive(item)">{{item.title}}</li>
         </ul>
     	</div>`,
       data () {

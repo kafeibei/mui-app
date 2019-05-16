@@ -14,7 +14,7 @@ define(['vue', 'utils/video', 'utils/muiview', 'utils/utils'], (Vue, video, muiv
             <i class="el-icon-plus"></i>
           </div>
         </div>
-        <p v-if="playInfo.on !== 0">当前播放状态：{{playInfo.on > 0 ? '播放中；当前播放视频地址：' + playInfo.src : '已暂停'}}</p>
+        <p class="tips-status" v-if="playInfo.on !== 0">当前播放状态：{{playInfo.on > 0 ? '播放中；当前播放视频地址：' + playInfo.src : '已暂停'}}</p>
         <div v-if="!osplus">
           <div class="video-obj" v-if="playInfo.on > 0">
             <video id="videoDom" class="video-dom" :src="playInfo.src"></video>

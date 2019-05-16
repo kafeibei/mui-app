@@ -26,7 +26,7 @@ require(['vue', 'components/navBar', 'utils/utils', 'utils/muiview', 'utils/shar
       },
       setShare () {
         share.system({
-          pictures: ['http://www.xiuzan.com/dist/images/newhome/merchant-2x.png', 'http://www.xiuzan.com/dist/images/newhome/retail-2x.png'],
+          pictures: ['https://kafeibei.github.io/raffle-h5/common/images/data/longines.png', 'https://kafeibei.github.io/raffle-h5/common/images/data/iphone.png'],
           title: '系统分享标题'
         })
       },
@@ -43,7 +43,7 @@ require(['vue', 'components/navBar', 'utils/utils', 'utils/muiview', 'utils/shar
           extras: {
             shareTitle: '自定义分享标题',
             shareDescription: '自定义分享描述',
-            shareImg: ['http://www.xiuzan.com/dist/images/newhome/merchant-2x.png'],
+            shareImg: ['https://kafeibei.github.io/raffle-h5/common/images/data/longines.png'],
             link: 'http://www.baidu.com/',
             pageFrom: 'share'
           }

@@ -5,8 +5,10 @@
   min-height: 100vh;
   .location-search {
     position: fixed;
-    left: 0;
+    left: 50%;
     top: px2rem(88px);
+    max-width: $pageMaxWidth;
+    transform: translateX(-50%);
     width: 100%;
     padding: px2rem(15px) px2rem(16px);
     background-color: #fff;
@@ -14,21 +16,25 @@
   }
   .map-area {
     position: fixed;
-    left: 0;
+    left: 50%;
     top: px2rem(178px);
     width: 100%;
+    max-width: $pageMaxWidth;
+    transform: translateX(-50%);
     background-color: #888;
     height: px2rem(456px);
     z-index: 11;
   }
   .page-loading {
     position: fixed;
-    left: 0;
+    left: 50%;
     top: 0;
     z-index: 9;
     padding: px2rem(634px) 0 px2rem(98px);
     width: 100%;
     height: 100%;
+    max-width: $pageMaxWidth;
+    transform: translateX(-50%);
     overflow-y: auto;
   }
   .location-item {
@@ -44,8 +50,10 @@
   .relocation-btn {
     position: fixed;
     bottom: 0;
-    left: 0;
+    left: 50%;
     width: 100%;
+    max-width: $pageMaxWidth;
+    transform: translateX(-50%);
     z-index: 11;
     background-color: #fff;
     height: px2rem(76px);
