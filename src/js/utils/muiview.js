@@ -63,7 +63,14 @@ define(['mui', 'utils/utils', 'utils/storage', 'config/payRequest'], (mui, utils
       if (options.extras) {
         search = '?' + utils.codeParam(options.extras)
       }
-      window.top.location.href = utils.setpathname(options.url) + search
+      let url = window.location.origin + utils.setpathname(options.url) + search
+      let topname = window.top.location.pathname.split('/')[2]
+      let curname = window.location.pathname.split('/')[2]
+      if (topname === curname) {
+        window.top.location.href = url
+      } else {
+        window.location.href = url
+      }
     } else {
       mui.plusReady(() => {
         let currentWebview = options.curId ? plus.webview.getWebviewById(options.curId) : plus.webview.currentWebview()
@@ -85,7 +92,7 @@ define(['mui', 'utils/utils', 'utils/storage', 'config/payRequest'], (mui, utils
       if (opts.extras) {
         search = (utils.setpathname(url).indexOf('?') > -1 ? '&' : '?') + utils.codeParam(opts.extras)
       }
-      url += search
+      url = window.location.origin + utils.setpathname(url) + search
     }
     mui.init({
       subpages: [{
