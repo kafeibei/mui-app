@@ -4,6 +4,9 @@
   background-color: #fff;
   text-align: center;
   height: 100vh;
+  .mui-slider {
+    height: 100%;
+  }
   .mui-slider .mui-slider-group  .mui-slider-item {
     height: 100vh;
   }
@@ -12,13 +15,28 @@
   }
   .guide-skip {
     position: absolute;
+    z-index: 1001;
+    width: px2rem(90px);
     right: px2rem(50px);
     top: px2rem(60px);
+    text-align: left;
     font-size: px2rem(26px);
     color: $textConfig;
-    .iconfont {
-      font-size: px2rem(24px);
-      margin-left: px2rem(6px);
+    &:after, &:before {
+      position: absolute;
+      left: px2rem(70px);
+      width: px2rem(2px);
+      height: px2rem(16px);
+      background-color: $textConfig;
+      content: '';
+    }
+    &:after {
+      top: px2rem(22px);
+      transform: rotate(45deg);
+    }
+    &:before {
+      top: px2rem(10px);
+      transform: rotate(-45deg);
     }
   }
   .img-box {
